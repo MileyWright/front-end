@@ -12,7 +12,7 @@ The user can input a search radius to find nearby food trucks and filter them by
 Food truck vendors can upload their truck and menu / food pictures when on their dashboard. 
 
 ## What is the mission statement?
-	Make it easy for diners to find the food they want!
+Make it easy for diners to find the food they want!
 
 ## 💡 Features
 
