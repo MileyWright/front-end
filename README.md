@@ -14,7 +14,11 @@ Make it easy for diners to find the food they want!
 
 ## What features are required for your minimum viable product?	
 
-User can register for an account as a diner or operator 	Diner can search for food trucks within a radius 	Diner can filter food trucks by rating, food type, distance 	Operator can register different food trucks
+
+* User can register for an account as a diner or operator
+* Diner can search for food trucks within a radius
+* Diner can filter food trucks by rating, food type, distance
+* Operator can register different food trucks
 
 Operator can upload their food truck menu / pics
 
