@@ -1,17 +1,28 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { signUp } from '../redux/actions'
+import { signUpDiner, signUpOperator } from '../redux/actions'
 import mapStateToProps from '../redux/state';
 import styled from 'styled-components';
 
 const SignUpContainer = styled.nav`
     padding: 4%;
+
+    .checkboxes {
+        display: flex;
+        justify-content: flex-start;
+        
+        div {
+            margin-right: 6%;
+            margin-bottom: 2%;    
+        }
+    }
 `;
 
 const initialSignupInfo = {
     username: '',
     email: '',
-    password: ''
+    password: '',
+    type: ''
 };
 
 
@@ -22,7 +33,17 @@ const SignUp = (props) => {
     //handlers
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.signUp();
+        
+        const signUpObj = {
+            username: signupInfo.username,
+            email: signupInfo.email,
+            password: signupInfo.password
+        }
+
+        //check if signup is diner or operator, then do appropriate signup
+        signupInfo.type === 'diner'
+            ? props.signUpDiner(signUpObj)
+            : props.signUpOperator(signUpObj)
     };
 
     const handleChange = (e) => {
@@ -60,10 +81,32 @@ const SignUp = (props) => {
                         onChange={handleChange}
                     />
                 </label>
+                <div className="checkboxes">
+                    <div>
+                    <label>Diner
+                        <input
+                            type="radio"
+                            name="type"
+                            value="diner"
+                            onChange={handleChange}
+                        />
+                    </label>
+                    </div>
+                    <div>
+                        <label>Operator
+                            <input
+                                type="radio"
+                                name="type"
+                                value="operator"
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
+                </div>
                 <button>Sign Up</button>
             </form>
         </SignUpContainer>
     )
 }
 
-export default connect(mapStateToProps, { signUp })(SignUp);
+export default connect(mapStateToProps, { signUpDiner, signUpOperator })(SignUp);

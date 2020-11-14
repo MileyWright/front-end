@@ -26,7 +26,7 @@ export const logIn = () => dispatch => {
 };
 
 //Sign up action
-export const signUp = () => dispatch => {
+export const signUpDiner = (dinerObj) => dispatch => {
     dispatch({ type: SIGNUP_START });
 
     axios.post('')
@@ -39,6 +39,22 @@ export const signUp = () => dispatch => {
             dispatch({ type: SIGNUP_FAIL, payload: err });
         });
 };
+
+//Sign up action
+export const signUpOperator = (operatorObj) => dispatch => {
+    dispatch({ type: SIGNUP_START });
+
+    axios.post('')
+        .then(res => {
+            console.log(res);
+            dispatch({ type: SIGNUP_SUCCESS, payload: res });
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: SIGNUP_FAIL, payload: err });
+        });
+};
+
 
 //Get info action
 export const getInfo = () => dispatch => {
