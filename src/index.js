@@ -99,7 +99,6 @@ const GlobalStyle = createGlobalStyle`
         color: #555;
         font-weight: 700;
         margin-bottom: 4%;
-        text-shadow: 1px 1px 2px #333;
     }
 
     h1 {
