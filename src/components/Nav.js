@@ -42,6 +42,8 @@ const NavContainer = styled.nav`
 
 const StyledLink = styled(Link)`
     font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 3px #333;
 
     @media (min-width: 300px) {
       font-size: 2.5rem;
