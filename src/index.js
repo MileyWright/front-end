@@ -85,6 +85,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-size: 2rem;
         font-family: 'Roboto', sans-serif;
+        color: #333;
         background-color: #FFBFB3;
         line-height: 2rem;
         letter-spacing: 2px;  
