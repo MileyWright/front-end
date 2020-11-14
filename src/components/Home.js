@@ -27,32 +27,48 @@ const HomeContainer = styled.nav`
         }
     }
 
-    .info1 {
+    /* Base info panel settings */
+    .info1, .info2 {
         color: #444;
-        background-color: #F9DB79;
         text-shadow: none;
         font-size: 1.5rem;
         line-height: 3rem;
         padding: 0 4%;
     }
 
+    
     .info2 {
-        color: #444;
-        text-shadow: none;
-        font-size: 1.5rem;
-        line-height: 3rem;
-        padding: 0 4%;
+        display: flex;
+        flex-flow: row wrap;
+        padding: 0;
+        p {
+            height: 100%;
+        }
     }
 
     .info3 {
         display: flex;
         flex-flow: row wrap;
-        background-color: #555;
-        justify-content: space-between;
+        justify-content: space-around;
+        padding: 0;
         img {
             width: 20%;
             border-radius: 10px;
+            box-shadow: inset 5px 5px 20px #000;
         }
+    }
+
+    .yellow {        
+        background-color: #F9DB79;
+    }
+
+    .gray {
+        color: #fff;
+        background-color: #555;
+    }
+
+    .blue {
+        background-color: #B5E8D5;
     }
 
     //images
@@ -76,7 +92,8 @@ const HomeContainer = styled.nav`
         .info3 {
             img {
                 width: 100%;
-                margin: 2% 0;
+                margin: 4% 0;
+                border-radius: 0;
             }
         }
     }
@@ -85,6 +102,11 @@ const HomeContainer = styled.nav`
         .hero {
             font-size: 3rem;
             height: 30vh;
+        }
+        .info2 {
+            p {
+                width: 50%;
+            }
         }
         .info3 {
             width: 10%auto;
@@ -100,6 +122,11 @@ const HomeContainer = styled.nav`
             font-size: 3.5rem;
             line-height: 4rem;
             height: 60vh;
+        }
+        .info2 {
+            p {
+                width: 50%;
+            }
         }
         .info3 {
             width: 10%auto;
@@ -117,7 +144,7 @@ const Home = () => {
             <section className="hero img1">
                 <p>FOOD WHEN YOU WANT IT</p>
             </section>
-            <section className="hero info1">
+            <section className="hero info1 yellow">
                 <p>
                     Sign up and find the food that you're craving right now!
                     We love to help pair food truck owners and food connosiours together
@@ -126,16 +153,20 @@ const Home = () => {
             </section>
             <section className="hero img2">
                 SEEK OUT YOUR FAVORITE EATS 
-            </section>
-            
-            <section className="hero info3">                
-                    <img src='./food1.jpg' alt='' />
-                    <img src='./food2.jpg' alt='' />
-                    <img src='./food3.jpg' alt='' />
-                    <img src='./tacos.jpg' alt='' />                
+            </section>            
+            <section className="hero info3">                               
+                <img src='./food1.jpg' alt='' />
+                <img src='./food2.jpg' alt='' />
+                <img src='./food3.jpg' alt='' />
+                <img src='./tacos.jpg' alt='' />                
             </section>            
             <section className="hero info2">
-                <p>
+                <p className="gray">
+                    Sign up and find the food that you're craving right now!
+                    We love to help pair food truck owners and food connosiours together
+                    in one easy to use experience. 
+                </p>
+                <p className="blue">
                     Sign up and find the food that you're craving right now!
                     We love to help pair food truck owners and food connosiours together
                     in one easy to use experience. 
