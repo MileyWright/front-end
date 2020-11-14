@@ -91,10 +91,6 @@ const GlobalStyle = createGlobalStyle`
         letter-spacing: 2px;  
     }
 
-    section {
-        margin-bottom: 4%;
-    }
-
     h1, h2, h3, h4, h5, h6 {       
         color: #555;
         font-weight: 700;
@@ -103,11 +99,11 @@ const GlobalStyle = createGlobalStyle`
 
     h1 {
         font-family: 'Modak', cursive;
-        color: #FFBFB3;
+        color: #fff;
         font-size: 6rem;
         font-weight: 400;
         line-height: 4rem;
-        text-shadow: 1px 1px 5px #333;
+        text-shadow: 1px 1px 3px #333;
     }
     h2 {
         font-size: 3rem;
@@ -157,7 +153,7 @@ const GlobalStyle = createGlobalStyle`
         font-weight: 700;
         width: 100%;
         padding: 2%;
-    }
+    }   
 `;
 
 
