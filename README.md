@@ -1,14 +1,3 @@
-#Product Vision Document
-
-This is the template for the Product Vision Document that you'll complete as a team at the beginning of Build Week. The PVD is crucial to the planning phase and is mandatory for all groups to complete.
-If you prefer to work in Google Docs, you can make a copy of the document here.
-☝️ Proposal
-
-#What problem does your app solve?
-Affords diners and food truck operators a space to find each other. Designed to make finding and eating at a food truck fast, easy and fun. Quickly see all of our Operator partners' nearby food trucks that currently open, view their current real-time GPS location, know the scheduled arrival and departure times, view photos, read customer reviews and much more, all in our easy to use app. Try FoodTruck TrackR today, and enjoy the best food your city has to offer.
-
-#Be as specific as possible; how does your app solve the problem?
-The user can input a search radius to find nearby food trucks a
 # Product Vision Document
 
 This is the template for the Product Vision Document that you'll complete as a team at the beginning of Build Week. The PVD is crucial to the planning phase and is mandatory for all groups to complete.
