@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { reducer } from './redux/reducers'
+import thunk from 'redux-thunk';
+import { logger } from 'redux-logger';
+
 import App from './App';
 import { createGlobalStyle } from 'styled-components';
 import './index.css'
@@ -91,10 +97,6 @@ const GlobalStyle = createGlobalStyle`
         letter-spacing: 2px;  
     }
 
-    section {
-        margin-bottom: 4%;
-    }
-
     h1, h2, h3, h4, h5, h6 {       
         color: #555;
         font-weight: 700;
@@ -103,11 +105,11 @@ const GlobalStyle = createGlobalStyle`
 
     h1 {
         font-family: 'Modak', cursive;
-        color: #FFBFB3;
+        color: #fff;
         font-size: 6rem;
         font-weight: 400;
         line-height: 4rem;
-        text-shadow: 1px 1px 5px #333;
+        text-shadow: 1px 1px 3px #333;
     }
     h2 {
         font-size: 3rem;
@@ -140,6 +142,7 @@ const GlobalStyle = createGlobalStyle`
     /*-----FORM STYLING-----*/
 
     label {
+        color: #555;
         font-weight: 700;
         margin: 2% 0;
     }
@@ -155,17 +158,22 @@ const GlobalStyle = createGlobalStyle`
     /*-----BUTTON STYLING-----*/
     button {
         font-weight: 700;
+        font-size: 2rem;
+        color: #222;
         width: 100%;
         padding: 2%;
-    }
+    }   
 `;
 
+const store = createStore(reducer, applyMiddleware(thunk, logger))
 
 
 ReactDOM.render(
 <Router>
     <GlobalStyle />
-    <App />
+    <Provider store={store}>
+        <App />
+    </Provider>
 </Router>
 , document.getElementById('root'));
 
