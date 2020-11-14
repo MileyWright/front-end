@@ -85,6 +85,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-size: 2rem;
         font-family: 'Roboto', sans-serif;
+        background-color: #FFBFB3;
         line-height: 2rem;
         letter-spacing: 2px;  
     }
@@ -93,15 +94,20 @@ const GlobalStyle = createGlobalStyle`
         margin-bottom: 4%;
     }
 
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Modak', cursive;
-        font-weight: 400;
+    h1, h2, h3, h4, h5, h6 {       
+        color: #555;
+        font-weight: 700;
         margin-bottom: 4%;
+        text-shadow: 1px 1px 2px #333;
     }
 
     h1 {
-        font-size: 4rem;
+        font-family: 'Modak', cursive;
+        color: #FFBFB3;
+        font-size: 6rem;
+        font-weight: 400;
         line-height: 4rem;
+        text-shadow: 1px 1px 5px #333;
     }
     h2 {
         font-size: 3rem;
@@ -120,7 +126,15 @@ const GlobalStyle = createGlobalStyle`
     }
 
     a {
-        text-decoration: none;
+        color: #fff;
+        text-decoration: none;        
+        text-shadow: 1px 1px 2px #333;
+        transition: all 0.25s ease-in-out;
+    }
+
+    a:hover {
+        color: #333;
+        transition: all 0.25s ease-in-out;
     }
 
     /*-----FORM STYLING-----*/
