@@ -122,9 +122,13 @@ const HomeContainer = styled.nav`
             font-size: 3.5rem;
             line-height: 4rem;
             height: 60vh;
-        }
-        .info2 {
             p {
+                font-size: 10rem;
+            }
+        }
+        .info1, .info2 {
+            p {
+                font-size: 4rem;
                 width: 50%;
             }
         }
@@ -152,7 +156,7 @@ const Home = () => {
                 </p>
             </section>
             <section className="hero img2">
-                SEEK OUT YOUR FAVORITE EATS 
+                <p>SEEK OUT YOUR FAVORITE EATS</p> 
             </section>            
             <section className="hero info3">                               
                 <img src='./food1.jpg' alt='' />
