@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import mapStateToProps from '../redux/state';
 import styled from 'styled-components';
 
 const NavContainer = styled.nav`
@@ -60,7 +62,7 @@ const StyledLink = styled(Link)`
 `;
 
 
-const Nav = () => {
+const Nav = (props) => {
     return(
         <NavContainer>
             <div>
@@ -70,14 +72,27 @@ const Nav = () => {
             <div>
                 <StyledLink to='/'>Home</StyledLink>
             </div>
-            <div>
-                <StyledLink to='/signup'>SignUp</StyledLink>
-            </div>
-            <div>
-                <StyledLink to='/signin'>SignIn</StyledLink>
-            </div>
+
+            {/*if user is logged in show signout button*/}
+            {props.isLoggedIn 
+                ?
+                (<>
+                    <div>
+                        <StyledLink to='/signout'>SignOut</StyledLink>
+                    </div>
+                </>)
+                : 
+                (<>
+                    <div>
+                        <StyledLink to='/signup'>SignUp</StyledLink>
+                    </div>
+                    <div>
+                        <StyledLink to='/signin'>SignIn</StyledLink>
+                    </div>
+                </>)
+            }            
         </NavContainer>
     )
 }
 
-export default Nav;
+export default connect(mapStateToProps, {})(Nav);
