@@ -166,14 +166,12 @@ const Home = () => {
             </section>            
             <section className="hero info2">
                 <p className="gray">
-                    Sign up and find the food that you're craving right now!
-                    We love to help pair food truck owners and food connosiours together
-                    in one easy to use experience. 
+                    FoodTruck TrackR was designed to make finding and eating at a food truck fast, easy and fun.
+                    Quickly see all of our Operator partners' nearby food trucks that currently open, their menu and rating!
                 </p>
                 <p className="blue">
-                    Sign up and find the food that you're craving right now!
-                    We love to help pair food truck owners and food connosiours together
-                    in one easy to use experience. 
+                    Truck operators! List your business and pave the way for your food truck. Bring in more customers and street cred for your
+                    business today.
                 </p>
             </section>
         </HomeContainer>
