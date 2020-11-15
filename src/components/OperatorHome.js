@@ -60,7 +60,7 @@ const mockTruckData = [
     {
         id: 2,
         name: 'Truck 2',
-        type: 'Cuisine',
+        type: 'Tasty Cuisine',
         image: './food2.jpg',
         location: 'location',
         rating: 2,
@@ -68,18 +68,18 @@ const mockTruckData = [
     {
         id: 3,
         name: 'Truck 3',
-        type: 'Cuisine',
+        type: 'Some Kinda Cuisine',
         image: './food2.jpg',
         location: 'location',
-        rating: 2,
+        rating: 1,
     },
     {
         id: 4,
         name: 'Test Truck 4',
-        type: 'Cuisine',
+        type: 'My Cuisine',
         image: './food2.jpg',
         location: 'location',
-        rating: 2,
+        rating: 3,
     },
     {
         id: 5,
@@ -103,7 +103,7 @@ const mockTruckData = [
         type: 'Cuisine',
         image: './food2.jpg',
         location: 'location',
-        rating: 2,
+        rating: 1,
     },
     {
         id: 8,
