@@ -22,7 +22,7 @@ const initialSignupInfo = {
     username: '',
     email: '',
     password: '',
-    type: ''
+    role: ''
 };
 
 
@@ -86,7 +86,7 @@ const SignUp = (props) => {
                     <label>Diner
                         <input
                             type="radio"
-                            name="type"
+                            name="role"
                             value="diner"
                             onChange={handleChange}
                         />
@@ -96,7 +96,7 @@ const SignUp = (props) => {
                         <label>Operator
                             <input
                                 type="radio"
-                                name="type"
+                                name="role"
                                 value="operator"
                                 onChange={handleChange}
                             />
