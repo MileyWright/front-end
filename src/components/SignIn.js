@@ -31,7 +31,7 @@ const SignIn = (props) => {
     };
     return(
         <SignInContainer>
-            <h2>SignIn</h2>
+            <h2>Sign In</h2>
             <form onSubmit={handleSubmit}>
                 <label>Username&nbsp;
                     <input

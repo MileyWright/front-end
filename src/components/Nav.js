@@ -78,16 +78,16 @@ const Nav = (props) => {
                 ?
                 (<>
                     <div>
-                        <StyledLink to='/signout'>SignOut</StyledLink>
+                        <StyledLink to='/signout'>Sign Out</StyledLink>
                     </div>
                 </>)
                 : 
                 (<>
                     <div>
-                        <StyledLink to='/signup'>SignUp</StyledLink>
+                        <StyledLink to='/signup'>Sign Up</StyledLink>
                     </div>
                     <div>
-                        <StyledLink to='/signin'>SignIn</StyledLink>
+                        <StyledLink to='/signin'>Sign In</StyledLink>
                     </div>
                 </>)
             }            
