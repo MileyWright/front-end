@@ -37,6 +37,9 @@ const MyTruckContainer = styled.div`
 
 
 const TruckInfoContainer = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
     background-color: #F9DB79;
     padding: 2%;
     width: 100%;
@@ -45,7 +48,13 @@ const TruckInfoContainer = styled.div`
 
 
 const FormContainer = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
     padding: 2% 1%;
+    div {
+        width: 40%;
+    }
 `;
 
 const mockTruckData = [
@@ -117,6 +126,7 @@ const mockTruckData = [
 
 const OperatorHome = () => {
     const [truckInfo, setTruckInfo] = useState();
+    const [formvalues, setFormValues] = useState();
 
     //
     const getTruckInfo = (e) => {
@@ -139,20 +149,35 @@ const OperatorHome = () => {
                         })}
                 </MyTruckContainer>
                 <TruckInfoContainer>
-                   {truckInfo && 
-                   <div>
-                       <h2>{truckInfo[0].name}</h2>
-                       <p>Cuisine: {truckInfo[0].type}</p>
-                       <p>Location: {truckInfo[0].location}</p>
-                       <p>Rating: {truckInfo[0].rating}</p>
-                    </div>                   
-                   }
+                    <div>
+                        {truckInfo && 
+                        <div>
+                            <h2>{truckInfo[0].name}</h2>
+                            <p>Cuisine: {truckInfo[0].type}</p>
+                            <p>Location: {truckInfo[0].location}</p>
+                            <p>Rating: {truckInfo[0].rating}</p>
+                            </div>                   
+                        }
+                    </div>
+                    <div>
+                        Truck menu items will display here...
+                    </div>
+                  
                 </TruckInfoContainer>
             </div>
             <FormContainer>
+                <div>
                 <form>
-                    <h3>Add a truck</h3>
+                    <h2>Add a truck</h2>
                     <label>Truck Name
+                        <input
+                            type="text"
+                            name="truck_name"
+                            value=''
+                            onChange=''
+                        />
+                    </label>
+                    <label>Cuisine
                         <input
                             type="text"
                             name="truck_name"
@@ -168,7 +193,13 @@ const OperatorHome = () => {
                             onChange=''
                         />
                     </label>
-                    <label>Menu Items
+                    <button>Add Truck</button>
+                </form>
+                </div>
+                <div>
+                <form>
+                <h2>Add menu items</h2>                    
+                    <label>Name
                         <input
                             type="text"
                             name="menu"
@@ -176,8 +207,33 @@ const OperatorHome = () => {
                             onChange=''
                         />
                     </label>
-                    <button>Add Truck</button>
+                    <label>Description
+                        <input
+                            type="text"
+                            name="menu"
+                            value=''
+                            onChange=''
+                        />
+                    </label>
+                    <label>Photo
+                        <input
+                            type="text"
+                            name="menu"
+                            value=''
+                            onChange=''
+                        />
+                    </label>
+                    <label>Price
+                        <input
+                            type="text"
+                            name="menu"
+                            value=''
+                            onChange=''
+                        />
+                    </label>
+                    <button>Add Menu Item</button>
                 </form>
+                </div>
             </FormContainer>
         </OperatorHomeContainer>
     )
