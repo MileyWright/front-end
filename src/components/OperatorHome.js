@@ -167,72 +167,72 @@ const OperatorHome = () => {
             </div>
             <FormContainer>
                 <div>
-                <form>
-                    <h2>Add a truck</h2>
-                    <label>Truck Name
-                        <input
-                            type="text"
-                            name="truck_name"
-                            value=''
-                            onChange=''
-                        />
-                    </label>
-                    <label>Cuisine
-                        <input
-                            type="text"
-                            name="truck_name"
-                            value=''
-                            onChange=''
-                        />
-                    </label>
-                    <label>Avatar URL
-                        <input
-                            type="text"
-                            name="truck_url"
-                            value=''
-                            onChange=''
-                        />
-                    </label>
-                    <button>Add Truck</button>
-                </form>
+                    <form>
+                        <h2>Add a truck</h2>
+                        <label>Truck Name
+                            <input
+                                type="text"
+                                name="truck_name"
+                                value=''
+                                onChange=''
+                            />
+                        </label>
+                        <label>Cuisine
+                            <input
+                                type="text"
+                                name="truck_name"
+                                value=''
+                                onChange=''
+                            />
+                        </label>
+                        <label>Avatar URL
+                            <input
+                                type="text"
+                                name="truck_url"
+                                value=''
+                                onChange=''
+                            />
+                        </label>
+                        <button>Add Truck</button>
+                    </form>
                 </div>
                 <div>
-                <form>
-                <h2>Add menu items</h2>                    
-                    <label>Name
-                        <input
-                            type="text"
-                            name="menu"
-                            value=''
-                            onChange=''
-                        />
-                    </label>
-                    <label>Description
-                        <input
-                            type="text"
-                            name="menu"
-                            value=''
-                            onChange=''
-                        />
-                    </label>
-                    <label>Photo
-                        <input
-                            type="text"
-                            name="menu"
-                            value=''
-                            onChange=''
-                        />
-                    </label>
-                    <label>Price
-                        <input
-                            type="text"
-                            name="menu"
-                            value=''
-                            onChange=''
-                        />
-                    </label>
-                    <button>Add Menu Item</button>
-                </form>
+                    <form>
+                    <h2>Add menu items</h2>                    
+                        <label>Name
+                            <input
+                                type="text"
+                                name="menu"
+                                value=''
+                                onChange=''
+                            />
+                        </label>
+                        <label>Description
+                            <input
+                                type="text"
+                                name="menu"
+                                value=''
+                                onChange=''
+                            />
+                        </label>
+                        <label>Photo
+                            <input
+                                type="text"
+                                name="menu"
+                                value=''
+                                onChange=''
+                            />
+                        </label>
+                        <label>Price
+                            <input
+                                type="text"
+                                name="menu"
+                                value=''
+                                onChange=''
+                            />
+                        </label>
+                        <button>Add Menu Item</button>
+                    </form>
                 </div>
             </FormContainer>
         </OperatorHomeContainer>

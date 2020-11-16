@@ -39,13 +39,14 @@ const DinerHome = () => {
                             onChange=''
                         />
                     </label>
-                    <label>Distance
-                        <input
-                            type="text"
-                            name="truck_url"
-                            value=''
-                            onChange=''
-                        />
+                    <label>Find food within (mi)
+                        <select>
+                            <option>1 mi</option>
+                            <option>2 mi</option>
+                            <option>3 mi</option>
+                            <option>4 mi</option>
+                            <option>5 mi</option>
+                        </select>
                     </label>
                     <button>Search</button>
                 </form>

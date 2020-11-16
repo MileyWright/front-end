@@ -147,7 +147,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 2% 0;
     }
 
-    input {
+    input, select {
         width: 100%;
         border-radius: 4px;
         border: 1px solid #666;
