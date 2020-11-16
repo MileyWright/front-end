@@ -39,7 +39,7 @@ const MyTruckContainer = styled.div`
 const TruckInfoContainer = styled.div`
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: #F9DB79;
     padding: 2%;
     width: 100%;
@@ -50,7 +50,7 @@ const TruckInfoContainer = styled.div`
 const FormContainer = styled.div`
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 2% 1%;
     div {
         width: 40%;
@@ -151,11 +151,11 @@ const OperatorHome = () => {
                 <TruckInfoContainer>
                     <div>
                         {truckInfo && 
-                        <div>
-                            <h2>{truckInfo[0].name}</h2>
-                            <p>Cuisine: {truckInfo[0].type}</p>
-                            <p>Location: {truckInfo[0].location}</p>
-                            <p>Rating: {truckInfo[0].rating}</p>
+                            <div>
+                                <h2>{truckInfo[0].name}</h2>
+                                <p>Cuisine: {truckInfo[0].type}</p>
+                                <p>Location: {truckInfo[0].location}</p>
+                                <p>Rating: {truckInfo[0].rating}</p>
                             </div>                   
                         }
                     </div>
