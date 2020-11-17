@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import mockTruckData from './mockTruckData';
+import TruckCard from './TruckCard';
 import styled from 'styled-components';
 
 const DinerHomeContainer = styled.nav`
@@ -16,6 +18,9 @@ const MyTruckContainer = styled.div`
     padding: 2%;
     margin: 2% 0;
     width: 100%;
+    div {
+        width: 100%;
+    }
 `;
 
 const FormContainer = styled.div`
@@ -26,6 +31,16 @@ const FormContainer = styled.div`
 `;
 
 const DinerHome = () => {
+    const [search, setSearch] = useState({ search: '', radius: null});
+
+    //handlers
+    const handleChange = (e) => {
+        setSearch({
+            ...search,
+            [e.target.name]: e.target.value
+        });
+    };
+
     return(
         <DinerHomeContainer>
             <h2>Find Food Trucks Near You</h2>          
@@ -34,18 +49,18 @@ const DinerHome = () => {
                     <label>Search by Name or Type of Food
                         <input
                             type="text"
-                            name="truck_name"
-                            value=''
-                            onChange=''
+                            name="search"
+                            value={search.search}
+                            onChange={handleChange}
                         />
                     </label>
                     <label>Find food within (mi)
-                        <select>
-                            <option>1 mi</option>
-                            <option>2 mi</option>
-                            <option>3 mi</option>
-                            <option>4 mi</option>
-                            <option>5 mi</option>
+                        <select name="radius"onChange={handleChange}>
+                            <option value="1">1 mi</option>
+                            <option value="2">2 mi</option>
+                            <option value="3">3 mi</option>
+                            <option value="4">4 mi</option>
+                            <option value="5">5 mi</option>
                         </select>
                     </label>
                     <button>Search</button>
@@ -53,11 +68,9 @@ const DinerHome = () => {
             </FormContainer>
             <MyTruckContainer>
                 <div>
-                    <h3>Results</h3>
-                    Display of added trucks goes here...
-                </div>
-                <div>
-                    Truck info (name, menu, location, etc. goes here...)
+                    <h2>Results</h2>
+                    {mockTruckData.filter(item => item.type.toLowerCase().includes(search.search))
+                    .map(item => <TruckCard key={item.id} {...item}/>)}
                 </div>
             </MyTruckContainer>
         </DinerHomeContainer>
