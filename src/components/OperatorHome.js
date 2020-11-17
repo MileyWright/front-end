@@ -44,6 +44,11 @@ const TruckInfoContainer = styled.div`
     padding: 2%;
     width: 100%;
     height: 20vh;   
+
+    button {
+        margin: 2% 0;
+        width: 80%;
+    }
 `;
 
 
@@ -53,7 +58,7 @@ const FormContainer = styled.div`
     justify-content: space-between;
     padding: 2% 1%;
     div {
-        width: 40%;
+        width: 100%;
     }
 `;
 
@@ -120,13 +125,14 @@ const mockTruckData = [
         type: 'Cuisine',
         image: './food2.jpg',
         location: 'location',
-        rating: 2,
+        rating: 2
     },
 ]
 
 const OperatorHome = () => {
     const [truckInfo, setTruckInfo] = useState();
     const [formvalues, setFormValues] = useState();
+    const [isEditing, setIsEditing] = useState(false);
 
     //
     const getTruckInfo = (e) => {
@@ -134,6 +140,11 @@ const OperatorHome = () => {
         const info = mockTruckData.filter(truck => truck.id === Number(e.target.id));
         console.log(info)
         setTruckInfo(info);
+    }
+
+    const toggleAddMenuItems = (e) => {
+        e.preventDefault();
+        setIsEditing(!isEditing);
     }
 
     return(
@@ -156,84 +167,88 @@ const OperatorHome = () => {
                                 <p>Cuisine: {truckInfo[0].type}</p>
                                 <p>Location: {truckInfo[0].location}</p>
                                 <p>Rating: {truckInfo[0].rating}</p>
+                                <button onClick={toggleAddMenuItems}>Add Menu Items</button>
                             </div>                   
                         }
                     </div>
                     <div>
-                        Truck menu items will display here...
-                    </div>
-                  
+                        Menu items will go here...
+                    </div>                  
                 </TruckInfoContainer>
             </div>
             <FormContainer>
-                <div>
-                    <form>
-                        <h2>Add a truck</h2>
-                        <label>Truck Name
-                            <input
-                                type="text"
-                                name="truck_name"
-                                value=''
-                                onChange=''
-                            />
-                        </label>
-                        <label>Cuisine
-                            <input
-                                type="text"
-                                name="truck_name"
-                                value=''
-                                onChange=''
-                            />
-                        </label>
-                        <label>Avatar URL
-                            <input
-                                type="text"
-                                name="truck_url"
-                                value=''
-                                onChange=''
-                            />
-                        </label>
-                        <button>Add Truck</button>
-                    </form>
-                </div>
-                <div>
-                    <form>
-                    <h2>Add menu items</h2>                    
-                        <label>Name
-                            <input
-                                type="text"
-                                name="menu"
-                                value=''
-                                onChange=''
-                            />
-                        </label>
-                        <label>Description
-                            <input
-                                type="text"
-                                name="menu"
-                                value=''
-                                onChange=''
-                            />
-                        </label>
-                        <label>Photo
-                            <input
-                                type="text"
-                                name="menu"
-                                value=''
-                                onChange=''
-                            />
-                        </label>
-                        <label>Price
-                            <input
-                                type="text"
-                                name="menu"
-                                value=''
-                                onChange=''
-                            />
-                        </label>
-                        <button>Add Menu Item</button>
-                    </form>
-                </div>
+                {!isEditing 
+                    ?
+                    (<div>
+                        <form>
+                            <h2>Add a truck</h2>
+                            <label>Truck Name
+                                <input
+                                    type="text"
+                                    name="truck_name"
+                                    value=''
+                                    onChange=''
+                                />
+                            </label>
+                            <label>Cuisine
+                                <input
+                                    type="text"
+                                    name="truck_name"
+                                    value=''
+                                    onChange=''
+                                />
+                            </label>
+                            <label>Avatar URL
+                                <input
+                                    type="text"
+                                    name="truck_url"
+                                    value=''
+                                    onChange=''
+                                />
+                            </label>
+                            <button>Add Truck</button>
+                        </form>
+                    </div>)
+                    :
+                    (<div>
+                        <form>
+                        <h2>Add menu items</h2>                    
+                            <label>Name
+                                <input
+                                    type="text"
+                                    name="menu"
+                                    value=''
+                                    onChange=''
+                                />
+                            </label>
+                            <label>Description
+                                <input
+                                    type="text"
+                                    name="menu"
+                                    value=''
+                                    onChange=''
+                                />
+                            </label>
+                            <label>Photo
+                                <input
+                                    type="text"
+                                    name="menu"
+                                    value=''
+                                    onChange=''
+                                />
+                            </label>
+                            <label>Price
+                                <input
+                                    type="text"
+                                    name="menu"
+                                    value=''
+                                    onChange=''
+                                />
+                            </label>
+                            <button>Add Menu Item</button><button onClick={toggleAddMenuItems}>Cancel</button>
+                        </form>
+                    </div>)
+                }
             </FormContainer>
         </OperatorHomeContainer>
     )
