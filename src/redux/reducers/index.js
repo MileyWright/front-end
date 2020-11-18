@@ -14,6 +14,7 @@ import {
 const initialState = {
     isLoggedIn: false,
     isLoading: false,
+    username: '',
     error: '',
     data: []
 }
@@ -30,6 +31,7 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isLoggedIn: true,
+                username: action.payload.username,
                 error: ''
             }
         case LOGIN_FAIL:
@@ -37,6 +39,7 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isLoggedIn: false,
+                username: '',
                 error: action.payload
             }
         case SIGNUP_START:
@@ -48,7 +51,6 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                isLoggedIn: true,
                 error: ''
             }
         case SIGNUP_FAIL:

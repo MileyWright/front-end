@@ -80,6 +80,9 @@ const Nav = (props) => {
                     <div>
                         <StyledLink to='/signout'>Sign Out</StyledLink>
                     </div>
+                    <div>
+                        {`You\'re currently signed in as ${props.username}`}
+                    </div>
                 </>)
                 : 
                 (<>
