@@ -51,6 +51,7 @@ const SignIn = (props) => {
                 </label>
                 <button>Sign In</button>
             </form>
+            <div>{String(props.error)}</div>
         </SignInContainer>
     )
 }

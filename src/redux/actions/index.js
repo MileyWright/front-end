@@ -14,7 +14,7 @@ export const REQUEST_FAIL = 'REQUEST_FAIL';
 export const logIn = () => dispatch => {
     dispatch({ type: LOGIN_START });
 
-    axios.post('')
+    axios.post('https://bw-food-truck.herokuapp.com/api/auth/login')
         .then(res => {
             console.log(res);
             dispatch({ type: LOGIN_SUCCESS, payload: res });
@@ -29,7 +29,7 @@ export const logIn = () => dispatch => {
 export const signUpDiner = (dinerObj) => dispatch => {
     dispatch({ type: SIGNUP_START });
 
-    axios.post('')
+    axios.post('https://bw-food-truck.herokuapp.com/api/auth/register')
         .then(res => {
             console.log(res);
             dispatch({ type: SIGNUP_SUCCESS, payload: res });
@@ -44,7 +44,7 @@ export const signUpDiner = (dinerObj) => dispatch => {
 export const signUpOperator = (operatorObj) => dispatch => {
     dispatch({ type: SIGNUP_START });
 
-    axios.post('')
+    axios.post('https://bw-food-truck.herokuapp.com/api/auth/register')
         .then(res => {
             console.log(res);
             dispatch({ type: SIGNUP_SUCCESS, payload: res });

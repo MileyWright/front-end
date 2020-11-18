@@ -22,7 +22,8 @@ const initialSignupInfo = {
     username: '',
     email: '',
     password: '',
-    role: ''
+    role: '',
+    location: null
 };
 
 
@@ -34,11 +35,19 @@ const SignUp = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
+        //Create a mock location number for the account
+        const mockLocation =  Math.round(Math.random() * 5) + 1;
+        
         const signUpObj = {
             username: signupInfo.username,
             email: signupInfo.email,
-            password: signupInfo.password
+            password: signupInfo.password,
+            role: signupInfo.role,
+            location: mockLocation,
         }
+
+        //debug
+        console.log(signUpObj)
 
         //check if signup is diner or operator, then do appropriate signup
         signupInfo.type === 'diner'
@@ -105,6 +114,7 @@ const SignUp = (props) => {
                 </div>
                 <button>Sign Up</button>
             </form>
+            <div>{String(props.error)}</div>
         </SignUpContainer>
     )
 }
