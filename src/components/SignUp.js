@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { signUpDiner, signUpOperator } from '../redux/actions'
+import { useHistory } from 'react-router-dom';
+import { signUpDiner, signUpOperator } from '../redux/actions';
 import mapStateToProps from '../redux/state';
 import styled from 'styled-components';
 
@@ -31,6 +32,9 @@ const SignUp = (props) => {
     //state
     const [signupInfo, setSignupInfo] = useState(initialSignupInfo);
 
+    //history hook
+    const history = useHistory();
+
     //handlers
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -53,6 +57,10 @@ const SignUp = (props) => {
         signupInfo.type === 'diner'
             ? props.signUpDiner(signUpObj)
             : props.signUpOperator(signUpObj)
+
+
+        //move to sign in page on sign up success
+        history.push('/signin')
     };
 
     const handleChange = (e) => {
