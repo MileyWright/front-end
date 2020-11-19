@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { logIn } from '../redux/actions'
+import { useHistory } from 'react-router-dom';
+import { logIn } from '../redux/actions';
 import mapStateToProps from '../redux/state';
 import styled from 'styled-components';
 
@@ -17,10 +18,16 @@ const SignIn = (props) => {
     //state
     const [signInInfo, setSignInInfo] = useState(initialSignInInfo);
 
+    //history hook
+    const history = useHistory();
+
     //handlers
     const handleSubmit = (e) => {
         e.preventDefault();
         props.logIn(signInInfo);
+        if (props.isLoggedIn) {
+            history.push('/')
+        };
     };
 
     const handleChange = (e) => {
