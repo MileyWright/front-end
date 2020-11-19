@@ -133,7 +133,7 @@ export const addFavorites = (dinerId, truckId) => dispatch => {
 export const deleteFavorites = (dinerId, truckId) => dispatch => {
     dispatch({ type: DELETE_FAVORITES_START });
 
-    axiosWithAuth().post(`https://food-truck-trackr-api.herokuapp.com/api/diners/${dinerId}/favoriteTrucks`, truckId)
+    axiosWithAuth().delete(`https://food-truck-trackr-api.herokuapp.com/api/diners/${dinerId}/favoriteTrucks`, truckId)
         .then(res => {
             console.log(res);
             dispatch({ type: DELETE_FAVORITES_SUCCESS, payload: res.data });
