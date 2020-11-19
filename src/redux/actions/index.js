@@ -9,7 +9,9 @@ export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 export const REQUEST_START = 'REQUEST_START';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAIL = 'REQUEST_FAIL';
-
+export const ADDTRUCK_START = 'ADDTRUCK_START';
+export const ADDTRUCK_SUCCESS = 'ADDTRUCK_SUCCESS';
+export const ADDTRUCK_FAIL = 'ADDTRUCK_FAIL';
 
 
 
@@ -57,8 +59,8 @@ export const signUpOperator = (operatorObj) => dispatch => {
 };
 
 
-//Get info action
-export const getInfo = () => dispatch => {
+//Get Truck Info action
+export const getTruckInfo = () => dispatch => {
     dispatch({ type: REQUEST_START });
 
     axiosWithAuth().get('https://food-truck-trackr-api.herokuapp.com/api/trucks')
@@ -69,5 +71,20 @@ export const getInfo = () => dispatch => {
         .catch(err => {
             console.log(err);
             dispatch({ type: REQUEST_FAIL, payload: err });
+        });
+};
+
+//Add Truck  action
+export const addTruck = (truckObj) => dispatch => {
+    dispatch({ type: ADDTRUCK_START });
+
+    axiosWithAuth().post('https://food-truck-trackr-api.herokuapp.com/api/trucks', truckObj)
+        .then(res => {
+            console.log(res);
+            dispatch({ type: ADDTRUCK_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: ADDTRUCK_FAIL, payload: err });
         });
 };

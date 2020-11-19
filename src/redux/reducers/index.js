@@ -9,14 +9,19 @@ import {
     REQUEST_START,
     REQUEST_SUCCESS,
     REQUEST_FAIL,
+    ADDTRUCK_START,
+    ADDTRUCK_SUCCESS,
+    ADDTRUCK_FAIL,
 } from '../actions'
 
 
 const initialState = {
     isLoggedIn: false,
     isLoading: false,
+    addSuccess: false,
     role: '',
     username: '',
+    operatorId: '',
     error: '',
     data: []
 }
@@ -34,6 +39,7 @@ export const reducer = (state = initialState, action) => {
                 isLoading: false,
                 isLoggedIn: true,
                 role: action.payload.type,
+                operatorId: action.payload.operator.operatorId,
                 username: action.payload.operator.username,
                 error: ''
             }
@@ -79,6 +85,25 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
+                error: action.payload
+            }
+        case ADDTRUCK_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case ADDTRUCK_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: true,
+                error: ''
+            }
+        case ADDTRUCK_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: false,
                 error: action.payload
             }
         default:

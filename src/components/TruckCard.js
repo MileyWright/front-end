@@ -4,7 +4,19 @@ import styled from 'styled-components';
 const TruckCardContainer = styled.div`
     margin: 1% 0;
     padding: 1% 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
 
+    .image {
+        width: 50%;
+        margin: 2%;
+        img {
+            width: 40%;
+        }
+    }
+
+    
     h2 {
         margin: 1% 0;
     }
@@ -15,14 +27,17 @@ const TruckCardContainer = styled.div`
 
 const TruckCard = (props) => {
     return(
-        <TruckCardContainer>
+        <TruckCardContainer>            
+           
+            <div className="image">
             <h2>{props.name}</h2>
-            <div>
                 <img src={props.imageOfTruck} alt={props.name} />
             </div>
-            <p>Cuisine: {props.cuisineType}</p>
-            <p>Location: {props.currentLocation}</p>
-            <p>Rating: {props.customerRatingsAvg}</p>
+            <div>
+                <p>Cuisine: {props.cuisineType}</p>
+                <p>Location: {props.currentLocation}</p>
+                <p>Rating: {props.customerRatingsAvg}</p>
+            </div>
         </TruckCardContainer>       
     );
 };

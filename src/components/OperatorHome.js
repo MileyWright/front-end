@@ -4,7 +4,7 @@ import mapStateToProps from '../redux/state'
 // import mockTruckData from './mockTruckData';
 import TruckCard from './TruckCard';
 import styled from 'styled-components';
-import { getInfo } from '../redux/actions';
+import { getTruckInfo, addTruck } from '../redux/actions';
 
 const OperatorHomeContainer = styled.nav`
     display: flex;
@@ -27,13 +27,6 @@ const MyTruckContainer = styled.div`
     background-color: #F9DB79;
     padding: 2%;
     width: 100%;
-    div {
-        width: 10%;
-        &:hover {
-            width:11%;
-            transition: all 0.25s ease-in-out;
-        }
-    }
     img {
         width: 100%;
     }
@@ -67,13 +60,46 @@ const FormContainer = styled.div`
 `;
 
 
+const initialFormValues = {
+    name: '',
+    cuisineType: '',
+    imageOfTruck: '',
+};
+
+
 const OperatorHome = (props) => {
-    const [formvalues, setFormValues] = useState();
+    const [formValues, setFormValues] = useState(initialFormValues);
     const [isEditing, setIsEditing] = useState(false);
 
+    //Get trucks on load
     useEffect(() => {
-        props.getInfo();
+        props.getTruckInfo();
     }, []);
+
+
+    //handlers
+    const handleChange = (e) => {
+        setFormValues({
+            ...formValues,
+            [e.target.name]: e.target.value
+        })
+    };
+
+    const submitTruck = (e) => {
+        e.preventDefault();
+
+        const newTruck = {
+            name: formValues.name,
+            cuisineType: formValues.cuisineType, 
+            imageOfTruck: formValues.imageOfTruck, 
+            currentLocation: String(Math.random()),
+            operatorId: props.operatorId,
+        };
+
+        console.log(newTruck);
+        props.addTruck(newTruck);
+        props.getTruckInfo();
+    }
 
     const toggleAddMenuItems = (e) => {
         e.preventDefault();
@@ -87,30 +113,30 @@ const OperatorHome = (props) => {
                 {!isEditing 
                     ?
                     (<div>
-                        <form>
+                        <form onSubmit={submitTruck}>
                             <h2>Add a truck</h2>
                             <label>Truck Name
                                 <input
                                     type="text"
-                                    name="truck_name"
-                                    value=''
-                                    onChange=''
+                                    name="name"
+                                    value={formValues.name}
+                                    onChange={handleChange}
                                 />
                             </label>
                             <label>Cuisine
                                 <input
                                     type="text"
-                                    name="truck_name"
-                                    value=''
-                                    onChange=''
+                                    name="cuisineType"
+                                    value={formValues.cuisineType}
+                                    onChange={handleChange}
                                 />
                             </label>
-                            <label>Avatar URL
+                            <label>Truck Image
                                 <input
                                     type="text"
-                                    name="truck_url"
-                                    value=''
-                                    onChange=''
+                                    name="imageOfTruck"
+                                    value={formValues.imageOfTruck}
+                                    onChange={handleChange}
                                 />
                             </label>
                             <button>Add Truck</button>
@@ -160,31 +186,15 @@ const OperatorHome = (props) => {
             <div>             
                 <h3>My Trucks</h3>                 
                 <MyTruckContainer>
-                    {props.data
-                        && props.data.map(truck => {
+                    {props.data.length > 0 
+                        ? (props.data.map(truck => {
                             return <TruckCard key={truck.id} {...truck} />
-                        })}
+                        }))
+                        : null }
                 </MyTruckContainer>
-                <TruckInfoContainer>
-                    {/* <div>
-                        {truckInfo && 
-                            <div>
-                                <h2>{truckInfo[0].name}</h2>
-                                <p>Cuisine: {truckInfo[0].type}</p>
-                                <p>Location: {truckInfo[0].location}</p>
-                                <p>Rating: {truckInfo[0].rating}</p>
-                                <button onClick={toggleAddMenuItems}>Add Menu Items</button>
-                            </div>                   
-                        }
-                    </div>
-                    <div>
-                        Menu items will go here...
-                    </div>                   */}
-                </TruckInfoContainer>
             </div>
-            
         </OperatorHomeContainer>
     )
 }
 
-export default connect(mapStateToProps, { getInfo })(OperatorHome);
+export default connect(mapStateToProps, { getTruckInfo, addTruck })(OperatorHome);
