@@ -29,7 +29,7 @@ export const logIn = () => dispatch => {
 export const signUpDiner = (dinerObj) => dispatch => {
     dispatch({ type: SIGNUP_START });
 
-    axios.post('https://bw-food-truck.herokuapp.com/api/auth/register')
+    axios.post('https://bw-food-truck.herokuapp.com/api/auth/register') 
         .then(res => {
             console.log(res);
             dispatch({ type: SIGNUP_SUCCESS, payload: res });
