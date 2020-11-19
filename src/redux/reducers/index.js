@@ -28,6 +28,7 @@ import {
     DELETE_TRUCK_START,
     DELETE_TRUCK_SUCCESS,
     DELETE_TRUCK_FAIL,
+    DELETE_TRUCK_DONE,
     UPDATE_TRUCK_START,
     UPDATE_TRUCK_SUCCESS,
     UPDATE_TRUCK_FAIL,
@@ -220,6 +221,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
+                addSuccess: true,
                 error: ''
             }
         case DELETE_TRUCK_FAIL:
@@ -227,6 +229,13 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }
+        case DELETE_TRUCK_DONE:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: false,
+                error: '',
             }
         case UPDATE_TRUCK_START:
             return {

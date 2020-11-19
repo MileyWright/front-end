@@ -27,6 +27,7 @@ export const ADDTRUCK_FAIL = 'ADDTRUCK_FAIL';
 export const DELETE_TRUCK_START = 'DELETE_TRUCK_START';
 export const DELETE_TRUCK_SUCCESS = 'DELETE_TRUCK_SUCCESS';
 export const DELETE_TRUCK_FAIL = 'DELETE_TRUCK_FAIL';
+export const DELETE_TRUCK_DONE = 'DELETE_TRUCK_DONE';
 export const UPDATE_TRUCK_START = 'UPDATE_TRUCK_START';
 export const UPDATE_TRUCK_SUCCESS = 'UPDATE_TRUCK_SUCCESS';
 export const UPDATE_TRUCK_DONE = 'UPDATE_TRUCK_DONE';
@@ -172,7 +173,7 @@ export const deleteTruck = (truckId) => dispatch => {
         .then(res => {
             console.log(res);
             dispatch({ type: DELETE_TRUCK_SUCCESS, payload: res.data });
-            dispatch({ type: UPDATE_TRUCK_DONE });
+            dispatch({ type: DELETE_TRUCK_DONE });
         })
         .catch(err => {
             console.log(err);
