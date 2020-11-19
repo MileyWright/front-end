@@ -19,10 +19,8 @@ function App() {
       </header>
       <section>
         <Switch>
-          {/* <PrivateRoute path='/operator' component={OperatorHome} />
-          <PrivateRoute path='/diner' component={DinerHome} /> */}
-          <Route path='/operator' component={OperatorHome} />
-          <Route path='/diner' component={DinerHome} />
+          <PrivateRoute path='/operator' component={OperatorHome} />
+          <PrivateRoute path='/diner' component={DinerHome} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/' component={Home} />

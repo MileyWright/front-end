@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { deleteTruck, getTruckInfo } from '../redux/actions';
+import { deleteTruck, getTruckInfo, updateTruck } from '../redux/actions';
 import mapStateToProps from '../redux/state';
 import styled from 'styled-components';
 
@@ -40,6 +40,11 @@ const TruckCard = (props) => {
     const [formValues, setFormValues] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
 
+    useEffect(() => {
+        props.getTruckInfo();
+    }, [props.addSuccess]);
+    
+
     //change handler
     const handleChange = (e) => {
        setFormValues({
@@ -48,7 +53,7 @@ const TruckCard = (props) => {
        })
     }
 
-     //delete handler
+     //edit state handler
      const handleEdit = () => {       
         setFormValues({
             ...formValues,
@@ -59,10 +64,18 @@ const TruckCard = (props) => {
         setIsEditing(!isEditing);
     }
 
+    //submit handler
+    const handleUpdate = (e) => {
+        e.preventDefault();      
+        props.updateTruck(props.id, formValues);
+        setIsEditing(!isEditing);
+    }
+
+
     //delete handler
-    const handleDelete = () => {
+    const handleDelete = (e) => {
+        e.preventDefault();    
         props.deleteTruck(props.id);
-        props.getTruckInfo();
     }
 
     return(
@@ -95,8 +108,8 @@ const TruckCard = (props) => {
                                 onChange={handleChange}
                             />
                         </label>
-                        <button>Submit</button>
-                        <button>Cancel</button>
+                        <button onClick={handleUpdate}>Update</button>
+                        <button onClick={handleEdit}>Cancel</button>
                     </form>
                     )
                 : 
@@ -112,14 +125,15 @@ const TruckCard = (props) => {
                         <p>Rating: {props.customerRatingsAvg}</p>
                         <p>Menu: {props.menu.map(item => <span>{item.itemName} {`$${item.itemPrice}`}</span> )}</p>
                     </div>
+                    <button>Add Menu Items</button>            
+                    <button onClick={handleEdit}>Edit Truck Details</button> 
+                    <button onClick={handleDelete}>Delete Truck</button>
                     </>
                     )
             }
-            <button>Add Menu Items</button>            
-            <button onClick={handleEdit}>Edit Truck Details</button> 
-            <button onClick={handleDelete}>Delete Truck</button>
+            
         </TruckCardContainer>       
     );
 };
 
-export default connect(mapStateToProps, { deleteTruck, getTruckInfo } )(TruckCard);
+export default connect(mapStateToProps, { deleteTruck, getTruckInfo, updateTruck } )(TruckCard);

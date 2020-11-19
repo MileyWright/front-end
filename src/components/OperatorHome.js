@@ -76,6 +76,11 @@ const OperatorHome = (props) => {
         props.getTruckInfo();
     }, []);
 
+    //Get trucks on load
+    useEffect(() => {
+        props.getTruckInfo();
+    }, [props.addSuccess]);
+
 
     //handlers
     const handleChange = (e) => {
@@ -187,7 +192,7 @@ const OperatorHome = (props) => {
             <div>             
                 <h3>My Trucks</h3>                 
                 <MyTruckContainer>
-                    {props.data.length > 0 
+                    {props.data 
                         ? (props.data.map(truck => {
                             return <TruckCard key={truck.id} deleteTruck={deleteTruck} {...truck} />
                         }))

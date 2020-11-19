@@ -15,7 +15,10 @@ export const ADDTRUCK_FAIL = 'ADDTRUCK_FAIL';
 export const DELETE_TRUCK_START = 'DELETE_TRUCK_START';
 export const DELETE_TRUCK_SUCCESS = 'DELETE_TRUCK_SUCCESS';
 export const DELETE_TRUCK_FAIL = 'DELETE_TRUCK_FAIL';
-
+export const UPDATE_TRUCK_START = 'UPDATE_TRUCK_START';
+export const UPDATE_TRUCK_SUCCESS = 'UPDATE_TRUCK_SUCCESS';
+export const UPDATE_TRUCK_DONE = 'UPDATE_TRUCK_DONE';
+export const UPDATE_TRUCK_FAIL = 'UPDATE_TRUCK_FAIL';
 
 
 //Log in action
@@ -101,9 +104,26 @@ export const deleteTruck = (truckId) => dispatch => {
         .then(res => {
             console.log(res);
             dispatch({ type: DELETE_TRUCK_SUCCESS, payload: res.data });
+            dispatch({ type: UPDATE_TRUCK_DONE });
         })
         .catch(err => {
             console.log(err);
             dispatch({ type: DELETE_TRUCK_FAIL, payload: err });
+        });
+};
+
+//Update Truck  action
+export const updateTruck = (truckId, truckobj) => dispatch => {
+    dispatch({ type: UPDATE_TRUCK_START });
+
+    axiosWithAuth().put(`https://food-truck-trackr-api.herokuapp.com/api/trucks/${truckId}`, truckobj)
+        .then(res => {
+            console.log(res);
+            dispatch({ type: UPDATE_TRUCK_SUCCESS, payload: res.data });
+            dispatch({ type: UPDATE_TRUCK_DONE });
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: UPDATE_TRUCK_FAIL, payload: err });
         });
 };

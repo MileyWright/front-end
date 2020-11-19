@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import mockTruckData from './mockTruckData';
 import TruckCard from './TruckCard';
 import styled from 'styled-components';
 
@@ -70,11 +69,11 @@ const DinerHome = () => {
                 <div>
                     <h2>Results</h2>
                     { /*Filters and maps through results. If 0 results display error message */
-                    mockTruckData.filter(item => item.type.toLowerCase().includes(search.search)).length > 0 
-                    ? mockTruckData.filter(item => item.type.toLowerCase().includes(search.search))
-                        .map(item => <TruckCard key={item.id} {...item}/>)
-                    : 'Sorry we couldn\t find any trucks nearby. Please try a different search term...'
-                    }
+                    // mockTruckData.filter(item => item.type.toLowerCase().includes(search.search)).length > 0 
+                    // ? mockTruckData.filter(item => item.type.toLowerCase().includes(search.search))
+                    //     .map(item => <TruckCard key={item.id} {...item}/>)
+                    // : 'Sorry we couldn\t find any trucks nearby. Please try a different search term...'
+                     }
                 </div>
             </MyTruckContainer>
         </DinerHomeContainer>
