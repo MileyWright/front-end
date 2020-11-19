@@ -7,6 +7,16 @@ import styled from 'styled-components';
 
 const SignInContainer = styled.nav`
     padding: 4%;
+
+    .checkboxes {
+        display: flex;
+        justify-content: flex-start;
+        
+        div {
+            margin-right: 6%;
+            margin-bottom: 2%;    
+        }
+    }
 `;
 
 const initialSignInInfo = {
@@ -17,6 +27,7 @@ const initialSignInInfo = {
 const SignIn = (props) => {
     //state
     const [signInInfo, setSignInInfo] = useState(initialSignInInfo);
+    const [role, setRole] = useState('');
 
     //history hook
     const history = useHistory();
@@ -25,8 +36,10 @@ const SignIn = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         props.logIn(signInInfo);
-        if (props.isLoggedIn) {
-            history.push('/')
+        if (props.isLoggedIn && role === 'diner') {
+            history.push('/diner')
+        } else if (props.isLoggedIn && role === 'operator') {
+            history.push('/operator')
         };
     };
 
@@ -36,6 +49,11 @@ const SignIn = (props) => {
             [e.target.name]: e.target.value,
         });
     };
+
+    const handleRole = (e) => {
+        setRole(e.target.value);
+    };
+
     return(
         <SignInContainer>
             <h2>Sign In</h2>
@@ -56,6 +74,28 @@ const SignIn = (props) => {
                         onChange={handleChange}
                     />
                 </label>
+                <div className="checkboxes">
+                    <div>
+                    <label>Diner
+                        <input
+                            type="radio"
+                            name="role"
+                            value="diner"
+                            onChange={handleRole}
+                        />
+                    </label>
+                    </div>
+                    <div>
+                        <label>Operator
+                            <input
+                                type="radio"
+                                name="role"
+                                value="operator"
+                                onChange={handleRole}
+                            />
+                        </label>
+                    </div>
+                </div>
                 <button>Sign In</button>
             </form>
             <div>{String(props.error)}</div>
