@@ -20,7 +20,7 @@ const SignIn = (props) => {
     //handlers
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.logIn();
+        props.logIn(signInInfo);
     };
 
     const handleChange = (e) => {
