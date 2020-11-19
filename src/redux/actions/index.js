@@ -16,11 +16,11 @@ export const REQUEST_FAIL = 'REQUEST_FAIL';
 //Log in action
 export const logIn = (signInInfo) => dispatch => {
     dispatch({ type: LOGIN_START });
-    //https://bw-food-truck.herokuapp.com/api/auth/login
-    axiosWithAuth().post('https://cors-anywhere.herokuapp.com/https://food-truck-trackr-sc.herokuapp.com//api/auth/login', signInInfo)
+    axios.post('https://food-truck-trackr-api.herokuapp.com/api/auth/login', signInInfo)
         .then(res => {
             console.log(res);
-            dispatch({ type: LOGIN_SUCCESS, payload: res });
+            localStorage.setItem('token', res.data.token);
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data });            
         })
         .catch(err => {
             console.log(err);
@@ -31,11 +31,10 @@ export const logIn = (signInInfo) => dispatch => {
 //Sign up action
 export const signUpDiner = (dinerObj) => dispatch => {
     dispatch({ type: SIGNUP_START });
-    //https://bw-food-truck.herokuapp.com/api/auth/register 
-    axios.post('https://cors-anywhere.herokuapp.com/https://food-truck-trackr-sc.herokuapp.com/api/auth/register/diners', dinerObj) 
+    axios.post('https://food-truck-trackr-api.herokuapp.com/api/auth/register/diner', dinerObj) 
         .then(res => {
             console.log(res);
-            dispatch({ type: SIGNUP_SUCCESS, payload: res });
+            dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
         })
         .catch(err => {
             console.log(err);
@@ -46,8 +45,7 @@ export const signUpDiner = (dinerObj) => dispatch => {
 //Sign up action
 export const signUpOperator = (operatorObj) => dispatch => {
     dispatch({ type: SIGNUP_START });
-    //https://bw-food-truck.herokuapp.com/api/auth/register
-    axios.post('https://cors-anywhere.herokuapp.com/https://food-truck-trackr-sc.herokuapp.com/api/auth/register/operators', operatorObj)
+    axios.post('https://food-truck-trackr-api.herokuapp.com/api/auth/register/operator', operatorObj)
         .then(res => {
             console.log(res);
             dispatch({ type: SIGNUP_SUCCESS, payload: res });
@@ -63,10 +61,10 @@ export const signUpOperator = (operatorObj) => dispatch => {
 export const getInfo = () => dispatch => {
     dispatch({ type: REQUEST_START });
 
-    axiosWithAuth.get('')
+    axiosWithAuth().get('https://food-truck-trackr-api.herokuapp.com/api/trucks')
         .then(res => {
             console.log(res);
-            dispatch({ type: REQUEST_SUCCESS, payload: res });
+            dispatch({ type: REQUEST_SUCCESS, payload: res.data });
         })
         .catch(err => {
             console.log(err);

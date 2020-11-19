@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-import mockTruckData from './mockTruckData';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import mapStateToProps from '../redux/state'
+// import mockTruckData from './mockTruckData';
+import TruckCard from './TruckCard';
 import styled from 'styled-components';
+import { getInfo } from '../redux/actions';
 
 const OperatorHomeContainer = styled.nav`
     display: flex;
@@ -17,13 +21,12 @@ const OperatorHomeContainer = styled.nav`
 
 const MyTruckContainer = styled.div`
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
     justify-content: space-between;
     align-content: space-between;
     background-color: #F9DB79;
     padding: 2%;
     width: 100%;
-    height: 20vh;
     div {
         width: 10%;
         &:hover {
@@ -64,18 +67,13 @@ const FormContainer = styled.div`
 `;
 
 
-const OperatorHome = () => {
-    const [truckInfo, setTruckInfo] = useState();
+const OperatorHome = (props) => {
     const [formvalues, setFormValues] = useState();
     const [isEditing, setIsEditing] = useState(false);
 
-    //
-    const getTruckInfo = (e) => {
-        console.log(e.target.id);
-        const info = mockTruckData.filter(truck => truck.id === Number(e.target.id));
-        console.log(info)
-        setTruckInfo(info);
-    }
+    useEffect(() => {
+        props.getInfo();
+    }, []);
 
     const toggleAddMenuItems = (e) => {
         e.preventDefault();
@@ -85,32 +83,6 @@ const OperatorHome = () => {
     return(
         <OperatorHomeContainer>
             <h2>Truck Operations Center</h2>
-            
-            <div>             
-                <h3>My Trucks</h3>                 
-                <MyTruckContainer>
-                    {mockTruckData
-                        && mockTruckData.map(truck => {
-                            return <div key={truck.id} id={truck.id} onClick={getTruckInfo} ><img src={truck.image} id={truck.id}></img></div>
-                        })}
-                </MyTruckContainer>
-                <TruckInfoContainer>
-                    <div>
-                        {truckInfo && 
-                            <div>
-                                <h2>{truckInfo[0].name}</h2>
-                                <p>Cuisine: {truckInfo[0].type}</p>
-                                <p>Location: {truckInfo[0].location}</p>
-                                <p>Rating: {truckInfo[0].rating}</p>
-                                <button onClick={toggleAddMenuItems}>Add Menu Items</button>
-                            </div>                   
-                        }
-                    </div>
-                    <div>
-                        Menu items will go here...
-                    </div>                  
-                </TruckInfoContainer>
-            </div>
             <FormContainer>
                 {!isEditing 
                     ?
@@ -185,8 +157,34 @@ const OperatorHome = () => {
                     </div>)
                 }
             </FormContainer>
+            <div>             
+                <h3>My Trucks</h3>                 
+                <MyTruckContainer>
+                    {props.data
+                        && props.data.map(truck => {
+                            return <TruckCard key={truck.id} {...truck} />
+                        })}
+                </MyTruckContainer>
+                <TruckInfoContainer>
+                    {/* <div>
+                        {truckInfo && 
+                            <div>
+                                <h2>{truckInfo[0].name}</h2>
+                                <p>Cuisine: {truckInfo[0].type}</p>
+                                <p>Location: {truckInfo[0].location}</p>
+                                <p>Rating: {truckInfo[0].rating}</p>
+                                <button onClick={toggleAddMenuItems}>Add Menu Items</button>
+                            </div>                   
+                        }
+                    </div>
+                    <div>
+                        Menu items will go here...
+                    </div>                   */}
+                </TruckInfoContainer>
+            </div>
+            
         </OperatorHomeContainer>
     )
 }
 
-export default OperatorHome;
+export default connect(mapStateToProps, { getInfo })(OperatorHome);

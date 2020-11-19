@@ -11,9 +11,11 @@ import {
     REQUEST_FAIL,
 } from '../actions'
 
+
 const initialState = {
     isLoggedIn: false,
     isLoading: false,
+    role: '',
     username: '',
     error: '',
     data: []
@@ -31,7 +33,8 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isLoggedIn: true,
-                username: action.payload.username,
+                role: action.payload.type,
+                username: action.payload.operator.username,
                 error: ''
             }
         case LOGIN_FAIL:

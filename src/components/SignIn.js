@@ -27,7 +27,6 @@ const initialSignInInfo = {
 const SignIn = (props) => {
     //state
     const [signInInfo, setSignInInfo] = useState(initialSignInInfo);
-    const [role, setRole] = useState('');
 
     //history hook
     const history = useHistory();
@@ -36,11 +35,6 @@ const SignIn = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         props.logIn(signInInfo);
-        if (props.isLoggedIn && role === 'diner') {
-            history.push('/diner')
-        } else if (props.isLoggedIn && role === 'operator') {
-            history.push('/operator')
-        };
     };
 
     const handleChange = (e) => {
@@ -50,9 +44,6 @@ const SignIn = (props) => {
         });
     };
 
-    const handleRole = (e) => {
-        setRole(e.target.value);
-    };
 
     return(
         <SignInContainer>
@@ -74,31 +65,12 @@ const SignIn = (props) => {
                         onChange={handleChange}
                     />
                 </label>
-                <div className="checkboxes">
-                    <div>
-                    <label>Diner
-                        <input
-                            type="radio"
-                            name="role"
-                            value="diner"
-                            onChange={handleRole}
-                        />
-                    </label>
-                    </div>
-                    <div>
-                        <label>Operator
-                            <input
-                                type="radio"
-                                name="role"
-                                value="operator"
-                                onChange={handleRole}
-                            />
-                        </label>
-                    </div>
-                </div>
                 <button>Sign In</button>
             </form>
             <div>{String(props.error)}</div>
+            {/*check global state to see if user is logged in and has a role. If so push to correct page*/}
+            {props.isLoggedIn && props.role === 'diner' ? history.push('/diner') : null }
+            {props.isLoggedIn && props.role === 'operator' ? history.push('/operator') : null }
         </SignInContainer>
     )
 }

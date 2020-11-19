@@ -17,9 +17,12 @@ const TruckCard = (props) => {
     return(
         <TruckCardContainer>
             <h2>{props.name}</h2>
-            <p>Cuisine: {props.type}</p>
-            <p>Location: {props.location}</p>
-            <p>Rating: {props.rating}</p>
+            <div>
+                <img src={props.imageOfTruck} alt={props.name} />
+            </div>
+            <p>Cuisine: {props.cuisineType}</p>
+            <p>Location: {props.currentLocation}</p>
+            <p>Rating: {props.customerRatingsAvg}</p>
         </TruckCardContainer>       
     );
 };
