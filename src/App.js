@@ -7,7 +7,7 @@ import OperatorHome from './components/OperatorHome';
 import DinerHome from './components/DinerHome';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
-
+import SignOut from './components/SignOut';
 
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
         <Switch>
           <PrivateRoute path='/operator' component={OperatorHome} />
           <PrivateRoute path='/diner' component={DinerHome} />
+          <Route path='/signout' component={SignOut} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/' component={Home} />

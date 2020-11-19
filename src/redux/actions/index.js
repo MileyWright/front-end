@@ -20,7 +20,7 @@ export const UPDATE_TRUCK_START = 'UPDATE_TRUCK_START';
 export const UPDATE_TRUCK_SUCCESS = 'UPDATE_TRUCK_SUCCESS';
 export const UPDATE_TRUCK_DONE = 'UPDATE_TRUCK_DONE';
 export const UPDATE_TRUCK_FAIL = 'UPDATE_TRUCK_FAIL';
-
+export const SIGN_OUT = 'SIGN_OUT';
 
 //Log in action
 export const logIn = (signInInfo) => dispatch => {
@@ -132,3 +132,10 @@ export const updateTruck = (truckId, truckobj) => dispatch => {
             dispatch({ type: UPDATE_TRUCK_FAIL, payload: err });
         });
 };
+
+
+//Sign Out
+export const signOut = () => dispatch  => {
+    localStorage.clear();
+    dispatch({ type: SIGN_OUT });
+}

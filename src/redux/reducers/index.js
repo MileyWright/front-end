@@ -7,6 +7,7 @@ import {
     SIGNUP_START,
     SIGNUP_SUCCESS,
     SIGNUP_FAIL,
+    SIGN_OUT,
     REQUEST_START,
     REQUEST_SUCCESS,
     REQUEST_FAIL,
@@ -86,6 +87,11 @@ export const reducer = (state = initialState, action) => {
                 isLoading: false,
                 isLoggedIn: false,
                 error: action.payload
+            }
+        case SIGN_OUT:
+            return {
+                ...state,
+                isLoggedIn: false
             }
         case REQUEST_START:
             return {
