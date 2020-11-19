@@ -54,10 +54,11 @@ const SignUp = (props) => {
         console.log(signUpObj)
 
         //check if signup is diner or operator, then do appropriate signup
-        signupInfo.type === 'diner'
-            ? props.signUpDiner(signUpObj)
-            : props.signUpOperator(signUpObj)
-
+        if (signupInfo.role === 'diner') {
+            props.signUpDiner(signUpObj)
+        } else {
+            props.signUpOperator(signUpObj)
+        }
 
         //move to sign in page on sign up success
         history.push('/signin')

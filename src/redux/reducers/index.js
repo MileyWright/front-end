@@ -1,7 +1,8 @@
 //imported action states
 import {
     LOGIN_START,
-    LOGIN_SUCCESS,
+    LOGIN_SUCCESS_DINER,
+    LOGIN_SUCCESS_OPERATOR,
     LOGIN_FAIL,
     SIGNUP_START,
     SIGNUP_SUCCESS,
@@ -40,7 +41,17 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: true
             }
-        case LOGIN_SUCCESS:
+        case LOGIN_SUCCESS_DINER:
+            return {
+                ...state,
+                isLoading: false,
+                isLoggedIn: true,
+                role: action.payload.type,
+                dinerId: action.payload.diner.dinerId,
+                username: action.payload.diner.username,
+                error: ''
+            }
+        case LOGIN_SUCCESS_OPERATOR:
             return {
                 ...state,
                 isLoading: false,

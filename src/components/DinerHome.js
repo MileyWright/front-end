@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import TruckCard from './TruckCard';
+import { connect } from 'react-redux';
+import mapStateToProps from '../redux/state'
 import styled from 'styled-components';
 
 const DinerHomeContainer = styled.nav`
@@ -80,4 +81,4 @@ const DinerHome = () => {
     )
 }
 
-export default DinerHome;
+export default connect(mapStateToProps, {})(DinerHome);

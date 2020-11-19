@@ -1,7 +1,8 @@
 import axios from 'axios';
 import axiosWithAuth from '../../axios/axiosWithAuth';
 export const LOGIN_START = 'LOGIN_START';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_SUCCESS_DINER = 'LOGIN_SUCCESS_DINER';
+export const LOGIN_SUCCESS_OPERATOR = 'LOGIN_SUCCESS_OPERATOR';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const SIGNUP_START = 'SIGNUP_START';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
@@ -28,7 +29,11 @@ export const logIn = (signInInfo) => dispatch => {
         .then(res => {
             console.log(res);
             localStorage.setItem('token', res.data.token);
-            dispatch({ type: LOGIN_SUCCESS, payload: res.data });            
+            if (res.data.type === 'diner') {
+                dispatch({ type: LOGIN_SUCCESS_DINER, payload: res.data }); 
+            } else {
+                dispatch({ type: LOGIN_SUCCESS_OPERATOR, payload: res.data });   
+            }
         })
         .catch(err => {
             console.log(err);
