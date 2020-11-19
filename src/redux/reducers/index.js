@@ -12,6 +12,9 @@ import {
     ADDTRUCK_START,
     ADDTRUCK_SUCCESS,
     ADDTRUCK_FAIL,
+    DELETE_TRUCK_START,
+    DELETE_TRUCK_SUCCESS,
+    DELETE_TRUCK_FAIL,
 } from '../actions'
 
 
@@ -104,6 +107,23 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 addSuccess: false,
+                error: action.payload
+            }
+        case DELETE_TRUCK_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case DELETE_TRUCK_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                error: ''
+            }
+        case DELETE_TRUCK_FAIL:
+            return {
+                ...state,
+                isLoading: false,
                 error: action.payload
             }
         default:

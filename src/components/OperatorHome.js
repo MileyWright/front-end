@@ -4,7 +4,7 @@ import mapStateToProps from '../redux/state'
 // import mockTruckData from './mockTruckData';
 import TruckCard from './TruckCard';
 import styled from 'styled-components';
-import { getTruckInfo, addTruck } from '../redux/actions';
+import { getTruckInfo, addTruck, deleteTruck } from '../redux/actions';
 
 const OperatorHomeContainer = styled.nav`
     display: flex;
@@ -98,6 +98,7 @@ const OperatorHome = (props) => {
 
         console.log(newTruck);
         props.addTruck(newTruck);
+        setFormValues(initialFormValues);
         props.getTruckInfo();
     }
 
@@ -188,7 +189,7 @@ const OperatorHome = (props) => {
                 <MyTruckContainer>
                     {props.data.length > 0 
                         ? (props.data.map(truck => {
-                            return <TruckCard key={truck.id} {...truck} />
+                            return <TruckCard key={truck.id} deleteTruck={deleteTruck} {...truck} />
                         }))
                         : null }
                 </MyTruckContainer>
@@ -197,4 +198,4 @@ const OperatorHome = (props) => {
     )
 }
 
-export default connect(mapStateToProps, { getTruckInfo, addTruck })(OperatorHome);
+export default connect(mapStateToProps, { getTruckInfo, addTruck, deleteTruck })(OperatorHome);

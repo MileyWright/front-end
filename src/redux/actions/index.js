@@ -12,6 +12,9 @@ export const REQUEST_FAIL = 'REQUEST_FAIL';
 export const ADDTRUCK_START = 'ADDTRUCK_START';
 export const ADDTRUCK_SUCCESS = 'ADDTRUCK_SUCCESS';
 export const ADDTRUCK_FAIL = 'ADDTRUCK_FAIL';
+export const DELETE_TRUCK_START = 'DELETE_TRUCK_START';
+export const DELETE_TRUCK_SUCCESS = 'DELETE_TRUCK_SUCCESS';
+export const DELETE_TRUCK_FAIL = 'DELETE_TRUCK_FAIL';
 
 
 
@@ -86,5 +89,21 @@ export const addTruck = (truckObj) => dispatch => {
         .catch(err => {
             console.log(err);
             dispatch({ type: ADDTRUCK_FAIL, payload: err });
+        });
+};
+
+
+//Delete Truck  action
+export const deleteTruck = (truckId) => dispatch => {
+    dispatch({ type: DELETE_TRUCK_START });
+
+    axiosWithAuth().delete(`https://food-truck-trackr-api.herokuapp.com/api/trucks/${truckId}`)
+        .then(res => {
+            console.log(res);
+            dispatch({ type: DELETE_TRUCK_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: DELETE_TRUCK_FAIL, payload: err });
         });
 };
