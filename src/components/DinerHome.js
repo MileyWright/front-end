@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getTruckInfo } from '../redux/actions'
+import { getTruckInfo, getFavorites, deleteFavorites } from '../redux/actions'
 import mapStateToProps from '../redux/state'
 import DinerTruckCard from './DinerTruckCard'
 import styled from 'styled-components';
@@ -10,6 +10,15 @@ const DinerHomeContainer = styled.nav`
     flex-flow: column nowrap;
     padding: 4% 2%;
     height: 100vh;
+`;
+
+const MyFavoritesContainer = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    background-color: #F9DB79;
+    padding: 2%;
+    margin: 2% 0;   
 `;
 
 const MyTruckContainer = styled.div`
@@ -38,7 +47,14 @@ const DinerHome = (props) => {
     //Get trucks on load
     useEffect(() => {
         props.getTruckInfo();
+        props.getFavorites(props.dinerId);
     }, []);
+
+    useEffect(() => {
+        props.getTruckInfo();
+        props.getFavorites(props.dinerId);
+    }, [props.addSuccess]);
+
 
     //handlers
     const handleChange = (e) => {
@@ -47,6 +63,15 @@ const DinerHome = (props) => {
             [e.target.name]: e.target.value
         });
     };
+
+    const handleDeleteFavorite = (e) => {
+        console.log(e.target.id)
+
+        const truckId = {
+            truckId: e.target.id,
+        };
+        props.deleteFavorites(props.dinerId, truckId)
+    } 
 
     return(
         <DinerHomeContainer>
@@ -72,6 +97,14 @@ const DinerHome = (props) => {
                     </label>
                 </form>
             </FormContainer>
+            <MyFavoritesContainer>
+                <h2>My Favorite Trucks</h2>
+                {/* maps over favorites data and displays current favs*/}
+                {props.favorites.length > 0
+                    ? props.favorites.map(fav => <div key={fav.id}>{fav.name}<button onClick={handleDeleteFavorite} id={fav.id}>x</button></div>)
+                    : null
+                }
+            </MyFavoritesContainer>
             <MyTruckContainer>
                 <div>
                     <h2>Results</h2>
@@ -87,4 +120,4 @@ const DinerHome = (props) => {
     )
 }
 
-export default connect(mapStateToProps, { getTruckInfo })(DinerHome);
+export default connect(mapStateToProps, { getTruckInfo, getFavorites, deleteFavorites })(DinerHome);

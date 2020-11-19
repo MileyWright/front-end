@@ -10,6 +10,17 @@ export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 export const REQUEST_START = 'REQUEST_START';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAIL = 'REQUEST_FAIL';
+export const GET_FAVORITES_START = 'GET_FAVORITES_START';
+export const GET_FAVORITES_SUCCESS = 'GET_FAVORITES_SUCCESS';
+export const GET_FAVORITES_FAIL = 'GET_FAVORITES_FAIL';
+export const ADD_FAVORITES_START = 'ADD_FAVORITES_START';
+export const ADD_FAVORITES_SUCCESS = 'ADD_FAVORITES_SUCCESS';
+export const ADD_FAVORITES_FAIL = 'ADD_FAVORITES_FAIL';
+export const ADD_FAVORITES_DONE = 'ADD_FAVORITES_DONE';
+export const DELETE_FAVORITES_START = 'DELETE_FAVORITES_START';
+export const DELETE_FAVORITES_SUCCESS = 'DELETE_FAVORITES_SUCCESS';
+export const DELETE_FAVORITES_FAIL = 'DELETE_FAVORITES_FAIL';
+export const DELETE_FAVORITES_DONE = 'DELETE_FAVORITES_DONE';
 export const ADDTRUCK_START = 'ADDTRUCK_START';
 export const ADDTRUCK_SUCCESS = 'ADDTRUCK_SUCCESS';
 export const ADDTRUCK_FAIL = 'ADDTRUCK_FAIL';
@@ -84,6 +95,58 @@ export const getTruckInfo = () => dispatch => {
             dispatch({ type: REQUEST_FAIL, payload: err });
         });
 };
+
+//Get Favorites Info action
+export const getFavorites = (dinerId) => dispatch => {
+    dispatch({ type: GET_FAVORITES_START });
+
+    axiosWithAuth().get(`https://food-truck-trackr-api.herokuapp.com/api/diners/${dinerId}/favoriteTrucks`)
+        .then(res => {
+            console.log(res);
+            dispatch({ type: GET_FAVORITES_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: GET_FAVORITES_FAIL, payload: err });
+        });
+};
+
+
+//Add Favorites action
+export const addFavorites = (dinerId, truckId) => dispatch => {
+    dispatch({ type: ADD_FAVORITES_START });
+
+    axiosWithAuth().post(`https://food-truck-trackr-api.herokuapp.com/api/diners/${dinerId}/favoriteTrucks`, truckId)
+        .then(res => {
+            console.log(res);
+            dispatch({ type: ADD_FAVORITES_SUCCESS, payload: res.data });
+            dispatch({ type: ADD_FAVORITES_DONE });
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: ADD_FAVORITES_FAIL, payload: err });
+        });
+};
+
+//Delete Favorite action
+export const deleteFavorites = (dinerId, truckId) => dispatch => {
+    dispatch({ type: DELETE_FAVORITES_START });
+
+    axiosWithAuth().post(`https://food-truck-trackr-api.herokuapp.com/api/diners/${dinerId}/favoriteTrucks`, truckId)
+        .then(res => {
+            console.log(res);
+            dispatch({ type: DELETE_FAVORITES_SUCCESS, payload: res.data });
+            dispatch({ type: DELETE_FAVORITES_DONE });
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: DELETE_FAVORITES_FAIL, payload: err });
+        });
+};
+
+
+
+
 
 //Add Truck  action
 export const addTruck = (truckObj) => dispatch => {

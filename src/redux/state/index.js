@@ -7,9 +7,11 @@ const mapStateToProps = (state) => {
         addSuccess: state.addSuccess,
         role: state.role,
         username: state.username,
+        dinerId: state.dinerId,
         operatorId: state.operatorId,
         error: state.error,
-        data: state.data
+        data: state.data,
+        favorites: state.favorites,
     };
 };
 

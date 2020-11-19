@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { deleteTruck, getTruckInfo, updateTruck } from '../redux/actions';
+import { getTruckInfo, addFavorites } from '../redux/actions';
 import mapStateToProps from '../redux/state';
 import styled from 'styled-components';
 
@@ -38,10 +38,13 @@ const initialFormValues = {
 
 const DinerTruckCard = (props) => {   
 
-    useEffect(() => {
-        props.getTruckInfo();
-    }, [props.addSuccess]);   
-
+    const handleAdd = (e) => {
+        const truckId = {
+            truckId: props.id,
+        };
+        e.preventDefault();
+        props.addFavorites(props.dinerId, truckId);
+    }
   
 
     return(
@@ -56,9 +59,9 @@ const DinerTruckCard = (props) => {
                 <p>Rating: {props.customerRatingsAvg}</p>
                 <p>Menu: {props.menu.map(item => <span>{item.itemName} {`$${item.itemPrice}`}</span> )}</p>
             </div>
-            <button>Add To Favorites</button>            
+            <button onClick={handleAdd}>Add To Favorites</button>            
         </TruckCardContainer>       
     );
 };
 
-export default connect(mapStateToProps, { deleteTruck, getTruckInfo, updateTruck } )(DinerTruckCard);
+export default connect(mapStateToProps, { getTruckInfo, addFavorites} )(DinerTruckCard);

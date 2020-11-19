@@ -11,9 +11,20 @@ import {
     REQUEST_START,
     REQUEST_SUCCESS,
     REQUEST_FAIL,
+    GET_FAVORITES_START,
+    GET_FAVORITES_SUCCESS,
+    GET_FAVORITES_FAIL,    
+    ADD_FAVORITES_START,
+    ADD_FAVORITES_SUCCESS,
+    ADD_FAVORITES_FAIL,
+    DELETE_FAVORITES_FAIL,
+    DELETE_FAVORITES_START,
+    DELETE_FAVORITES_SUCCESS,
+    DELETE_FAVORITES_DONE,
     ADDTRUCK_START,
     ADDTRUCK_SUCCESS,
     ADDTRUCK_FAIL,
+    ADD_FAVORITES_DONE,
     DELETE_TRUCK_START,
     DELETE_TRUCK_SUCCESS,
     DELETE_TRUCK_FAIL,
@@ -30,9 +41,11 @@ const initialState = {
     addSuccess: false,
     role: '',
     username: '',
+    dinerId: '',
     operatorId: '',
     error: '',
-    data: []
+    data: [],
+    favorites: [],
 }
 
 export const reducer = (state = initialState, action) => {
@@ -110,6 +123,74 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }
+        case GET_FAVORITES_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case GET_FAVORITES_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                favorites: action.payload
+            }
+        case GET_FAVORITES_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        case ADD_FAVORITES_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case ADD_FAVORITES_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: true,
+                error: '',
+            }
+        case ADD_FAVORITES_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        case ADD_FAVORITES_DONE:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: false,
+                error: '',
+            }
+        case DELETE_FAVORITES_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case DELETE_FAVORITES_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: true,
+                error: '',
+            }
+        case DELETE_FAVORITES_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        case DELETE_FAVORITES_DONE:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: false,
+                error: '',
             }
         case ADDTRUCK_START:
             return {

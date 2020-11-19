@@ -7,7 +7,7 @@ import OperatorHome from './components/OperatorHome';
 import DinerHome from './components/DinerHome';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
-import SignOut from './components/SignOut';
+import SignOut from './components/SignOut.js';
 
 
 function App() {
