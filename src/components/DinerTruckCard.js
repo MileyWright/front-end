@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getTruckInfo, addFavorites, submitRating} from '../redux/actions';
 import mapStateToProps from '../redux/state';
@@ -41,9 +41,9 @@ const RatingContainer = styled.div`
 const DinerTruckCard = (props) => {   
     const [rating, setRating] = useState('')
 
-    // useEffect(() => {
-
-    // }, [props.addSuccess])
+    useEffect(() => {
+        props.getTruckInfo();
+    }, [props.addSuccess])
 
     //Add Favorite
     const handleAdd = (e) => {

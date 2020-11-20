@@ -44,17 +44,11 @@ const FormContainer = styled.div`
 const DinerHome = (props) => {
     const [search, setSearch] = useState({ search: '', radius: null});
 
-    //Get trucks on load
+    //get trucks and favorites on load
     useEffect(() => {
         props.getTruckInfo();
         props.getFavorites(props.dinerId);
     }, []);
-
-    useEffect(() => {
-        props.getTruckInfo();
-        props.getFavorites(props.dinerId);
-    }, [props.addSuccess]);
-
 
     //handlers
     const handleChange = (e) => {
@@ -112,7 +106,7 @@ const DinerHome = (props) => {
                 <div>
                     <h2>Results</h2>
                     { /*Filters and maps through results. If 0 results display error message */
-                    props.data.filter(item => item.name.toLowerCase().includes(search.search) || item.cuisineType.toLowerCase().includes(search.search)).length > 0 
+                    props.data
                       ? props.data.filter(item => item.name.toLowerCase().includes(search.search) || item.cuisineType.toLowerCase().includes(search.search))
                           .map(item => <DinerTruckCard key={item.id} {...item}/>)
                       : 'Sorry we couldn\t find any trucks nearby. Please try a different search term...'
