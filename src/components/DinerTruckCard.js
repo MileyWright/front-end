@@ -78,7 +78,7 @@ const DinerTruckCard = (props) => {
                 <p>Cuisine: {props.cuisineType}</p>
                 <p>Location: {props.currentLocation}</p>
                 <p>Rating: {props.customerRatingsAvg}</p>
-                <p>Menu: {props.menu.map(item => <span>{item.itemName} {`$${item.itemPrice}`}</span> )}</p>
+                <p>Menu: {props.menu.map(item => <div key={item.itemName}>{`$${item.itemPrice}`} {item.itemName}</div> )}</p>
             </div>
             <RatingContainer>
                 <h3>Rate This Truck</h3>
