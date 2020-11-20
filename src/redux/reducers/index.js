@@ -188,6 +188,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
+                addSuccess: false,
                 error: action.payload
             }
         case ADD_RATING_DONE:

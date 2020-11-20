@@ -90,7 +90,7 @@ const DinerHome = (props) => {
                         />
                     </label>
                     <label>Find food within (mi)
-                        <select name="radius"onChange={handleChange}>
+                        <select name="radius" onChange={handleChange}>
                             <option value="1">1 mi</option>
                             <option value="2">2 mi</option>
                             <option value="3">3 mi</option>

@@ -138,7 +138,7 @@ export const addFavorites = (dinerId, truckId) => dispatch => {
 export const submitRating = (truckId, dinerId, customerRatingObj) => dispatch => {
     dispatch({ type: ADD_RATING_START });
 
-    axiosWithAuth().post(`https://food-truck-trackr-api.herokuapp.com/api/trucks/${truckId}/customerRatings/${dinerId} `, customerRatingObj)
+    axiosWithAuth().post(`https://food-truck-trackr-api.herokuapp.com/api/trucks/${truckId}/customerRatings/${dinerId}`, customerRatingObj)
         .then(res => {
             console.log(res);
             dispatch({ type: ADD_RATING_SUCCESS, payload: res.data });
