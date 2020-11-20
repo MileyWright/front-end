@@ -33,6 +33,10 @@ import {
     DELETE_TRUCK_SUCCESS,
     DELETE_TRUCK_FAIL,
     DELETE_TRUCK_DONE,
+    ADD_MENU_ITEM_START,
+    ADD_MENU_ITEM_SUCCESS,
+    ADD_MENU_ITEM_FAIL,
+    ADD_MENU_ITEM_DONE,
     UPDATE_TRUCK_START,
     UPDATE_TRUCK_SUCCESS,
     UPDATE_TRUCK_FAIL,
@@ -261,6 +265,31 @@ export const reducer = (state = initialState, action) => {
                 error: action.payload
             }
         case DELETE_TRUCK_DONE:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: false,
+                error: '',
+            }
+        case ADD_MENU_ITEM_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case ADD_MENU_ITEM_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: true,
+                error: ''
+            }
+        case ADD_MENU_ITEM_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        case ADD_MENU_ITEM_DONE:
             return {
                 ...state,
                 isLoading: false,

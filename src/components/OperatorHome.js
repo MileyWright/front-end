@@ -49,9 +49,17 @@ const initialFormValues = {
     imageOfTruck: '',
 };
 
+const initialFormMenuValues = {
+    itemName: '',
+    itemDescription: '',
+    itemPrice: '',
+    itemPhotos: ['fries.jpg'],
+};
+
 
 const OperatorHome = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [menuValues, setMenuValues] = useState(initialFormMenuValues);
     const [isEditing, setIsEditing] = useState(false);
 
     //Get trucks on load
@@ -72,6 +80,14 @@ const OperatorHome = (props) => {
             [e.target.name]: e.target.value
         })
     };
+
+    const handleMenuChange = (e) => {
+        setMenuValues({
+            ...menuValues,
+            [e.target.name]: e.target.value
+        })
+    };
+
 
     const submitTruck = (e) => {
         e.preventDefault();
@@ -99,9 +115,6 @@ const OperatorHome = (props) => {
         <OperatorHomeContainer>
             <h2>Truck Operations Center</h2>
             <FormContainer>
-                {!isEditing 
-                    ?
-                    (<div>
                         <form onSubmit={submitTruck}>
                             <h2>Add a truck</h2>
                             <label>Truck Name
@@ -130,47 +143,7 @@ const OperatorHome = (props) => {
                             </label>
                             <button>Add Truck</button>
                         </form>
-                    </div>)
-                    :
-                    (<div>
-                        <form>
-                        <h2>Add menu items</h2>                    
-                            <label>Name
-                                <input
-                                    type="text"
-                                    name="menu"
-                                    value=''
-                                    onChange=''
-                                />
-                            </label>
-                            <label>Description
-                                <input
-                                    type="text"
-                                    name="menu"
-                                    value=''
-                                    onChange=''
-                                />
-                            </label>
-                            <label>Photo
-                                <input
-                                    type="text"
-                                    name="menu"
-                                    value=''
-                                    onChange=''
-                                />
-                            </label>
-                            <label>Price
-                                <input
-                                    type="text"
-                                    name="menu"
-                                    value=''
-                                    onChange=''
-                                />
-                            </label>
-                            <button>Add Menu Item</button><button onClick={toggleAddMenuItems}>Cancel</button>
-                        </form>
-                    </div>)
-                }
+                    
             </FormContainer>
             <div>             
                 <h3>My Trucks</h3>                 

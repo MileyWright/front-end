@@ -33,10 +33,19 @@ const initialFormValues = {
     currentLocation: '',
 }
 
+const initialFormMenuValues = {
+    itemName: '',
+    itemDescription: '',
+    itemPrice: '',
+    itemPhotos: ['fries.jpg'],
+};
+
 
 const TruckCard = (props) => {   
-    const [formValues, setFormValues] = useState(false);
+    const [formValues, setFormValues] = useState(false);    
+    const [menuValues, setMenuValues] = useState(initialFormMenuValues);
     const [isEditing, setIsEditing] = useState(false);
+    const [isAddingItem, setIsAddingItem] = useState(false);
 
     useEffect(() => {
         props.getTruckInfo();
@@ -60,6 +69,24 @@ const TruckCard = (props) => {
             currentLocation: props.currentLocation,            
         })
         setIsEditing(!isEditing);
+    }
+
+    const handleMenuChange = (e) => {
+        setMenuValues({
+            ...menuValues,
+            [e.target.name]: e.target.value
+        })
+    };
+
+     //menu item add handler
+     const handleAdd = () => {       
+    //     setFormValues({
+    //         ...menuValues,
+    //         itemName: '',
+    // itemDescription: '',
+    // itemPrice: '',         
+    //     })
+        setIsAddingItem(!isAddingItem);
     }
 
     //submit handler
@@ -112,23 +139,59 @@ const TruckCard = (props) => {
                     )
                 : 
                     (
-                    <>
-                    <div className="image" id={props.id}>
-                        <h2>{props.name}</h2>
-                        <img src={props.imageOfTruck} alt={props.name} />
-                    </div>
-                    <div>
-                        <p>Cuisine: {props.cuisineType}</p>
-                        <p>Location: {props.currentLocation}</p>
-                        <p>Rating: {props.customerRatingsAvg}</p>
-                        <p>Menu: {props.menu.map(item => <span>{item.itemName} {`$${item.itemPrice}`}</span> )}</p>
-                    </div>
-                    <button>Add Menu Items</button>            
-                    <button onClick={handleEdit}>Edit Truck Details</button> 
-                    <button onClick={handleDelete}>Delete Truck</button>
-                    </>
+                        isAddingItem
+                        ? (
+                            <div>
+                                <form>
+                                <h2>Add menu items</h2>                    
+                                    <label>Name
+                                        <input
+                                            type="text"
+                                            name="itemName"
+                                            value={menuValues.itemName}
+                                            onChange={handleMenuChange}
+                                        />
+                                    </label>
+                                    <label>Description
+                                        <input
+                                            type="text"
+                                            name="itemDescription"
+                                            value={menuValues.itemDescription}
+                                            onChange={handleMenuChange}
+                                        />
+                                    </label>
+                                    <label>Price
+                                        <input
+                                            type="text"
+                                            name="itemPrice"
+                                            value={menuValues.itemPrice}
+                                            onChange={handleMenuChange}
+                                        />
+                                    </label>
+                                    <button>Add Menu Item</button><button onClick={handleAdd}>Cancel</button>
+                                </form>
+                            </div>
+                        )
+                        : (
+                            <>
+                            <div className="image" id={props.id}>
+                                <h2>{props.name}</h2>
+                                <img src={props.imageOfTruck} alt={props.name} />
+                            </div>
+                            <div>
+                                <p>Cuisine: {props.cuisineType}</p>
+                                <p>Location: {props.currentLocation}</p>
+                                <p>Rating: {props.customerRatingsAvg}</p>
+                                <p>Menu: {props.menu.map(item => <span>{item.itemName} {`$${item.itemPrice}`}</span> )}</p>
+                            </div>
+                            <button onClick={handleAdd}>Add Menu Items</button>            
+                            <button onClick={handleEdit}>Edit Truck Details</button> 
+                            <button onClick={handleDelete}>Delete Truck</button>
+                            </>
+                        )
                     )
             }
+
             
         </TruckCardContainer>       
     );

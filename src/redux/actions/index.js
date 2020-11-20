@@ -32,6 +32,10 @@ export const DELETE_TRUCK_START = 'DELETE_TRUCK_START';
 export const DELETE_TRUCK_SUCCESS = 'DELETE_TRUCK_SUCCESS';
 export const DELETE_TRUCK_FAIL = 'DELETE_TRUCK_FAIL';
 export const DELETE_TRUCK_DONE = 'DELETE_TRUCK_DONE';
+export const ADD_MENU_ITEM_START = 'ADD_MENU_ITEM_START';
+export const ADD_MENU_ITEM_SUCCESS = 'ADD_MENU_ITEM_SUCCESS';
+export const ADD_MENU_ITEM_FAIL = 'ADD_MENU_ITEM_FAIL';
+export const ADD_MENU_ITEM_DONE = 'ADD_MENU_ITEM_DONE';
 export const UPDATE_TRUCK_START = 'UPDATE_TRUCK_START';
 export const UPDATE_TRUCK_SUCCESS = 'UPDATE_TRUCK_SUCCESS';
 export const UPDATE_TRUCK_DONE = 'UPDATE_TRUCK_DONE';
@@ -202,6 +206,23 @@ export const deleteTruck = (truckId) => dispatch => {
             dispatch({ type: DELETE_TRUCK_FAIL, payload: err });
         });
 };
+
+//Add Menu Item
+export const addMenuItem = (truckId, menuObj) => dispatch => {
+    dispatch({ type: ADD_MENU_ITEM_START });
+
+    axiosWithAuth().post(`https://food-truck-trackr-api.herokuapp.com/api/trucks/${truckId}/menu`, menuObj)
+        .then(res => {
+            console.log(res);
+            dispatch({ type: ADD_MENU_ITEM_SUCCESS, payload: res.data });
+            dispatch({ type: ADD_MENU_ITEM_DONE });
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: ADD_MENU_ITEM_FAIL, payload: err });
+        });
+};
+
 
 //Update Truck  action
 export const updateTruck = (truckId, truckobj) => dispatch => {
