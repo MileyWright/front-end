@@ -16,8 +16,6 @@ const TruckCardContainer = styled.div`
             width: 30%;
         }
     }
-
-    
     h2 {
         margin: 1% 0;
     }
@@ -43,6 +41,9 @@ const RatingContainer = styled.div`
 const DinerTruckCard = (props) => {   
     const [rating, setRating] = useState('')
 
+    // useEffect(() => {
+
+    // }, [props.addSuccess])
 
     //Add Favorite
     const handleAdd = (e) => {

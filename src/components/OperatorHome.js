@@ -19,33 +19,16 @@ const OperatorHomeContainer = styled.nav`
     }
 `;
 
+
+
 const MyTruckContainer = styled.div`
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     justify-content: space-between;
     align-content: space-between;
     background-color: #F9DB79;
     padding: 2%;
     width: 100%;
-    img {
-        width: 100%;
-    }
-`;
-
-
-const TruckInfoContainer = styled.div`
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    background-color: #F9DB79;
-    padding: 2%;
-    width: 100%;
-    height: 20vh;   
-
-    button {
-        margin: 2% 0;
-        width: 80%;
-    }
 `;
 
 

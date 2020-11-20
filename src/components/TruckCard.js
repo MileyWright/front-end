@@ -8,17 +8,15 @@ const TruckCardContainer = styled.div`
     margin: 1% 0;
     padding: 1% 0;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
     justify-content: space-around;
     padding: 2%;
-    .image {
-        width: 50%;
-        margin: 2%;
+    div {
+        width: 100%;
         img {
             width: 40%;
         }
     }
-
     
     h2 {
         margin: 1% 0;
@@ -116,7 +114,7 @@ const TruckCard = (props) => {
                     (
                     <>
                     <div className="image" id={props.id}>
-                    <h2>{props.name}</h2>
+                        <h2>{props.name}</h2>
                         <img src={props.imageOfTruck} alt={props.name} />
                     </div>
                     <div>
