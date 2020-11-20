@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { deleteTruck, getTruckInfo, updateTruck } from '../redux/actions';
+import { deleteTruck, getTruckInfo, updateTruck, addMenuItem } from '../redux/actions';
 import mapStateToProps from '../redux/state';
 import styled from 'styled-components';
 
@@ -37,7 +37,6 @@ const initialFormMenuValues = {
     itemName: '',
     itemDescription: '',
     itemPrice: '',
-    itemPhotos: ['fries.jpg'],
 };
 
 
@@ -78,16 +77,20 @@ const TruckCard = (props) => {
         })
     };
 
-     //menu item add handler
-     const handleAdd = () => {       
-    //     setFormValues({
-    //         ...menuValues,
-    //         itemName: '',
-    // itemDescription: '',
-    // itemPrice: '',         
-    //     })
+    //menu item add handler
+    const handleAdd = () => {   
         setIsAddingItem(!isAddingItem);
     }
+
+    //menu item add handler
+    const handleMenuSubmit = (e) => {   
+        e.preventDefault();
+        props.addMenuItem(props.id, menuValues);
+        setMenuValues(initialFormMenuValues);
+        setIsAddingItem(!isAddingItem);
+    }
+
+   
 
     //submit handler
     const handleUpdate = (e) => {
@@ -168,7 +171,8 @@ const TruckCard = (props) => {
                                             onChange={handleMenuChange}
                                         />
                                     </label>
-                                    <button>Add Menu Item</button><button onClick={handleAdd}>Cancel</button>
+                                    <button onClick={handleMenuSubmit}>Add Menu Item</button>
+                                    <button onClick={handleAdd}>Cancel</button>
                                 </form>
                             </div>
                         )
@@ -182,7 +186,7 @@ const TruckCard = (props) => {
                                 <p>Cuisine: {props.cuisineType}</p>
                                 <p>Location: {props.currentLocation}</p>
                                 <p>Rating: {props.customerRatingsAvg}</p>
-                                <p>Menu: {props.menu.map(item => <span>{item.itemName} {`$${item.itemPrice}`}</span> )}</p>
+                                <p>Menu: {props.menu.map(item => <div key={item.itemName}>{`$${item.itemPrice}`} {item.itemName}</div> )}</p>
                             </div>
                             <button onClick={handleAdd}>Add Menu Items</button>            
                             <button onClick={handleEdit}>Edit Truck Details</button> 
@@ -197,4 +201,4 @@ const TruckCard = (props) => {
     );
 };
 
-export default connect(mapStateToProps, { deleteTruck, getTruckInfo, updateTruck } )(TruckCard);
+export default connect(mapStateToProps, { deleteTruck, getTruckInfo, updateTruck, addMenuItem } )(TruckCard);
