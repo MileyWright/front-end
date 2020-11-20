@@ -62,7 +62,7 @@ const DinerHome = (props) => {
         console.log(e.target.id)
 
         const truckId = {
-            truckId: Number(e.target.id)
+            truckId: e.target.id
         };
 
         console.log(truckId);

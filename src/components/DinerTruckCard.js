@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getTruckInfo, addFavorites, submitRating} from '../redux/actions';
+import { getTruckInfo, addFavorites, submitRating, getFavorites } from '../redux/actions';
 import mapStateToProps from '../redux/state';
 import styled from 'styled-components';
 
@@ -41,8 +41,8 @@ const RatingContainer = styled.div`
 const DinerTruckCard = (props) => {   
     const [rating, setRating] = useState('')
 
-    useEffect(() => {
-        props.getTruckInfo();
+    useEffect(() => {      
+        props.getFavorites(props.dinerId);
     }, [props.addSuccess])
 
     //Add Favorite
@@ -97,4 +97,4 @@ const DinerTruckCard = (props) => {
     );
 };
 
-export default connect(mapStateToProps, { getTruckInfo, addFavorites, submitRating} )(DinerTruckCard);
+export default connect(mapStateToProps, { getTruckInfo, addFavorites, getFavorites, submitRating} )(DinerTruckCard);
