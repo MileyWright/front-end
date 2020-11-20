@@ -49,17 +49,10 @@ const initialFormValues = {
     imageOfTruck: '',
 };
 
-const initialFormMenuValues = {
-    itemName: '',
-    itemDescription: '',
-    itemPrice: '',
-    itemPhotos: ['fries.jpg'],
-};
 
 
 const OperatorHome = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
-    const [menuValues, setMenuValues] = useState(initialFormMenuValues);
     const [isEditing, setIsEditing] = useState(false);
 
     //Get trucks on load
@@ -81,14 +74,7 @@ const OperatorHome = (props) => {
         })
     };
 
-    const handleMenuChange = (e) => {
-        setMenuValues({
-            ...menuValues,
-            [e.target.name]: e.target.value
-        })
-    };
-
-
+    
     const submitTruck = (e) => {
         e.preventDefault();
 
