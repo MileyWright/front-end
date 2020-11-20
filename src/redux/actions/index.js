@@ -17,6 +17,10 @@ export const ADD_FAVORITES_START = 'ADD_FAVORITES_START';
 export const ADD_FAVORITES_SUCCESS = 'ADD_FAVORITES_SUCCESS';
 export const ADD_FAVORITES_FAIL = 'ADD_FAVORITES_FAIL';
 export const ADD_FAVORITES_DONE = 'ADD_FAVORITES_DONE';
+export const ADD_RATING_START = 'ADD_RATING_START';
+export const ADD_RATING_SUCCESS = 'ADD_RATING_SUCCESS';
+export const ADD_RATING_FAIL = 'ADD_RATING_FAIL';
+export const ADD_RATING_DONE = 'ADD_RATING_DONE';
 export const DELETE_FAVORITES_START = 'DELETE_FAVORITES_START';
 export const DELETE_FAVORITES_SUCCESS = 'DELETE_FAVORITES_SUCCESS';
 export const DELETE_FAVORITES_FAIL = 'DELETE_FAVORITES_FAIL';
@@ -129,11 +133,29 @@ export const addFavorites = (dinerId, truckId) => dispatch => {
         });
 };
 
-//Delete Favorite action
-export const deleteFavorites = (dinerId, truckId) => dispatch => {
-    dispatch({ type: DELETE_FAVORITES_START });
 
-    axiosWithAuth().delete(`https://food-truck-trackr-api.herokuapp.com/api/diners/${dinerId}/favoriteTrucks`, truckId)
+//Submit Rating action
+export const submitRating = (truckId, dinerId, customerRatingObj) => dispatch => {
+    dispatch({ type: ADD_RATING_START });
+
+    axiosWithAuth().post(`https://food-truck-trackr-api.herokuapp.com/api/trucks/${truckId}/customerRatings/${dinerId} `, customerRatingObj)
+        .then(res => {
+            console.log(res);
+            dispatch({ type: ADD_RATING_SUCCESS, payload: res.data });
+            dispatch({ type: ADD_RATING_DONE });
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: ADD_RATING_FAIL, payload: err });
+        });
+};
+
+
+//Delete Favorite action
+export const deleteFavorites = (dinerId, truckIdObj) => dispatch => {
+    dispatch({ type: DELETE_FAVORITES_START });
+    console.log(truckIdObj)
+    axiosWithAuth().delete(`https://food-truck-trackr-api.herokuapp.com/api/diners/${dinerId}/favoriteTrucks`, truckIdObj)
         .then(res => {
             console.log(res);
             dispatch({ type: DELETE_FAVORITES_SUCCESS, payload: res.data });

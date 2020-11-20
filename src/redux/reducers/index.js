@@ -17,6 +17,11 @@ import {
     ADD_FAVORITES_START,
     ADD_FAVORITES_SUCCESS,
     ADD_FAVORITES_FAIL,
+    ADD_FAVORITES_DONE,
+    ADD_RATING_START,
+    ADD_RATING_SUCCESS,
+    ADD_RATING_FAIL,
+    ADD_RATING_DONE,
     DELETE_FAVORITES_FAIL,
     DELETE_FAVORITES_START,
     DELETE_FAVORITES_SUCCESS,
@@ -24,7 +29,6 @@ import {
     ADDTRUCK_START,
     ADDTRUCK_SUCCESS,
     ADDTRUCK_FAIL,
-    ADD_FAVORITES_DONE,
     DELETE_TRUCK_START,
     DELETE_TRUCK_SUCCESS,
     DELETE_TRUCK_FAIL,
@@ -162,6 +166,31 @@ export const reducer = (state = initialState, action) => {
                 error: action.payload
             }
         case ADD_FAVORITES_DONE:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: false,
+                error: '',
+            }
+        case ADD_RATING_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case ADD_RATING_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                addSuccess: true,
+                error: '',
+            }
+        case ADD_RATING_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        case ADD_RATING_DONE:
             return {
                 ...state,
                 isLoading: false,

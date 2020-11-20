@@ -68,8 +68,11 @@ const DinerHome = (props) => {
         console.log(e.target.id)
 
         const truckId = {
-            truckId: e.target.id,
+            truckId: Number(e.target.id)
         };
+
+        console.log(truckId);
+
         props.deleteFavorites(props.dinerId, truckId)
     } 
 

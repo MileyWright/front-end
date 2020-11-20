@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { getTruckInfo, addFavorites } from '../redux/actions';
+import { getTruckInfo, addFavorites, submitRating} from '../redux/actions';
 import mapStateToProps from '../redux/state';
 import styled from 'styled-components';
 
 const TruckCardContainer = styled.div`
-    margin: 1% 0;
-    padding: 1% 0;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    padding: 2%;
-    .image {
+    margin: 1% 0;
+    padding: 1% 0;
+    div {
         width: 50%;
-        margin: 2%;
         img {
-            width: 40%;
+            width: 30%;
         }
     }
 
@@ -28,29 +26,51 @@ const TruckCardContainer = styled.div`
     };
 `;
 
+const RatingContainer = styled.div`
+    padding: 0;
+    margin: 0;
+    h3 {
+       margin: 1% 0;
+    }
+    select {
+        margin: 1% 0;
+    }
+`;
 
-const initialFormValues = {
-    name: '',
-    cuisineType: '',
-    currentLocation: '',
-}
+
 
 
 const DinerTruckCard = (props) => {   
+    const [rating, setRating] = useState('')
 
+
+    //Add Favorite
     const handleAdd = (e) => {
+        e.preventDefault();
         const truckId = {
             truckId: props.id,
         };
-        e.preventDefault();
         props.addFavorites(props.dinerId, truckId);
     }
-  
+
+    //handle Rating
+    const handleRating = (e) => {
+        setRating(e.target.value)
+    }
+
+    //Submit Rating
+    const submit = (e) => {
+        e.preventDefault();
+        const ratingObj = {
+            customerRating: rating
+        }
+        props.submitRating(props.id, props.dinerId, ratingObj);
+    }
 
     return(
         <TruckCardContainer>
             <div className="image" id={props.id}>
-            <h2>{props.name}</h2>
+                <h2>{props.name}</h2>
                 <img src={props.imageOfTruck} alt={props.name} />
             </div>
             <div>
@@ -59,9 +79,21 @@ const DinerTruckCard = (props) => {
                 <p>Rating: {props.customerRatingsAvg}</p>
                 <p>Menu: {props.menu.map(item => <span>{item.itemName} {`$${item.itemPrice}`}</span> )}</p>
             </div>
+            <RatingContainer>
+                <h3>Rate This Truck</h3>
+                <select name="rating" onChange={handleRating}>
+                    <option>Please select a rating...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button onClick={submit}>Submit Rating</button>
+            </RatingContainer>
             <button onClick={handleAdd}>Add To Favorites</button>            
         </TruckCardContainer>       
     );
 };
 
-export default connect(mapStateToProps, { getTruckInfo, addFavorites} )(DinerTruckCard);
+export default connect(mapStateToProps, { getTruckInfo, addFavorites, submitRating} )(DinerTruckCard);
